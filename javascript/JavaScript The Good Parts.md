@@ -73,7 +73,6 @@ document.writeln('Hello, world!');
 Hello, world!
 ```
 
-<br>
 - 다음에 나오는 코드는 이 책 전체에서 새로운 메소드를 정의할 때 두루 쓰이는 method라는 메소드이다.
 ```
 Function.prototype.method = function (name, func) {
