@@ -125,7 +125,7 @@ class Square extends React.Component {
 Next player: X
 
 |      |      |      |
-| :--- | ---- | ---- |
+| :--: | :--: | :--: |
 |      |      |      |
 |      |      |      |
 
