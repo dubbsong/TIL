@@ -1,6 +1,6 @@
 ## sum.js
 
-### <u>**problem**</u>
+### ***problem***
 
 Summation to n.
 
@@ -12,9 +12,11 @@ and computes the sum of all integers up
 
 to n starting from 0.
 
+<br>
 
 
-### <u>**solution**</u>
+
+### ***solution***
 
 ```javascript
 function sum(n) {
@@ -27,9 +29,9 @@ function sum(n) {
 }
 ```
 
+<br>
 
-
-### <u>**function call**</u>
+### ***function call***
 
 ```javascript
 sum(10);	// 55
