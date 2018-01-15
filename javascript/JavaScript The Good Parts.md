@@ -56,16 +56,19 @@
 #### 03. 예제 테스트를 위한 간단한 준비
 - 웹 브라우저와 텍스트 에디터만 있으면 자바스크립트 프로그램을 실행시킬 모든 준비가 끝난 것이다.
 
-**1) program.html**
+1. *program.html*
+
 ```
 <html><body><pre><script src="program.js">
 </script></pre></body></html>
 ```
-**2) program.js**
+2. *program.js*
+
 ```
 document.writeln('Hello, world!');
 ```
-**3) program.html 파일을 브라우저로 불러와서 결과 확인**
+3. *program.html 파일을 브라우저로 불러와서 결과 확인*
+
 ```
 Hello, world!
 ```
