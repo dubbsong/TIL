@@ -14,8 +14,6 @@ to n starting from 0.
 
 <br>
 
-
-
 ### ***solution***
 
 ```javascript
