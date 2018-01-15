@@ -1,6 +1,6 @@
 ## sum.js
 
-**problem**
+#### **problem**
 
 Summation to n.
 
@@ -14,7 +14,7 @@ to n starting from 0.
 
 
 
-**solution**
+#### **solution**
 
 ```javascript
 function sum(n) {
@@ -29,7 +29,7 @@ function sum(n) {
 
 
 
-**function call**
+#### **function call**
 
 ```javascript
 sum(10);	// 55
