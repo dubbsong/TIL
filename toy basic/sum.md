@@ -12,7 +12,7 @@ and computes the sum of all integers up
 
 to n starting from 0.
 
-
+<br>
 
 ### ***solution***
 
@@ -27,7 +27,7 @@ function sum(n) {
 }
 ```
 
-
+<br>
 
 ### ***function call***
 
