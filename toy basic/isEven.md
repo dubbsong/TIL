@@ -8,7 +8,7 @@ Given an integer,
 
 'isEven' returns whether the integer is even or not.
 
-<br>
+
 
 ### ***solution 01***
 
@@ -18,7 +18,7 @@ function isEven(num) {
 }
 ```
 
-<br>
+
 
 ### ***solution 02***
 
@@ -32,7 +32,7 @@ function isEven(num) {
 }
 ```
 
-<br>
+
 
 ### ***function call***
 
