@@ -97,7 +97,7 @@ return React.createElement(
 ### Passing Data Through Props (props를 통해 데이터 전달하기)
 
 - Let's try passing some data from the Board component to the Square component.
-- In Board's **renderSquare** method, change the code to pass a **value** prop to the Square:
+- # In Board's **renderSquare** method, change the code to pass a **value** prop to the Square:
 
 ```react
 class Board extends React.Component {
@@ -143,5 +143,89 @@ Next player: X
 <br>
 
 ### An Interactive Component (대화형 컴포넌트)
+
+- Let's make the Square component fill in an 'X' when you click it.
+- Try changing the button tag returned in the **render()** function of the Square like this:
+
+```react
+class Square extends React.Component {
+  render() {
+    return (
+    	<button className="square" onclick={() => alert('click')}>
+      		{this.props.value}
+      	</button>
+    );
+  }
+}
+```
+
+- If you click on a square now, you should get an alert in your browser.
+- This uses the new JavaScript <u>arrow function</u> syntax.
+- Note that we're passing a function as the **onClick** prop(onClick prop에 함수를 전달했다).
+- Doing **onClick={alert('click')}** would alert immediately instead of when the button is clicked(코드를 작성하고 버튼을 클릭하면 alert창 대신 경고가 뜨게 된다).
+- React components can have state by setting **this.state** in the constructor(React 컴포넌트는 생성자에서 this.state를 설정하여 상태를 가질 수 있다), which should be considered private to the component(상태는 각 컴포넌트마다 가지고 있다).
+- Let's store the current value of the square in state, and change it when the square is clicked.
+- First, add a constructor to the class to initialize the state(우선 상태를 초기화 하기 위해 클래스에 생성자를 추가):
+
+```react
+class Square extends React.Component {
+  constructor (props) {
+    super(props);
+    this.state = {
+      value: null,
+    };
+  }
+  render() {
+    return (
+    	<button className="square" onClick={() => alert('click')}>
+      		{this.props.value}
+      	</button>
+    );
+  }
+}
+```
+
+- In <u>JavaScript classes</u>, you need to explicitly call **super();** when defining the constructor of a subclass(JavaScript 클래스에서 서브클래스의 생성자를 정의할 때 super(); 메소드를 명시적으로 호출해줘야 한다).
+- Now change the Square **render** method to display the value from the current state, and to toggle it on click(Square의 render 메소드에서 현재 상태의 value 값을 표시하고 클릭할 때 바뀌도록 수정):
+  - Replace **this.props.value** with **this.state.value** inside the **< button>** tag.
+  - Replace the **() => alert()** event handler with () => this.setState({value: 'X'}).
+- Now the **< button>** tag looks like this:
+
+```react
+class Square extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      value: null,
+    };
+  }
+  
+  render() {
+    return (
+    	<button className="square" onClick={() => this.setState({value: 'X'})}>
+      		{this.state.value}
+      	</button>
+    );
+  }
+}
+```
+
+- Whenever **this.setState** is called, an update to the component is scheduled, causing React to merge in the passed state update and rerender the component along with its descendants(this.setState가 호출될 때마다 컴포넌트가 업데이트되므로 업데이트된 상태가 전달되어 React가 이를 병합하고 하위 컴포넌트와 함께 다시 렌더링한다).
+- When the component rerenders, **this.state.value** will be 'X' so you'll see an X in the grid(컴포넌트가 렌더링 될 때 this.state.value는 'X'가 되어 그리드 안에 X가 보이게 된다).
+- If you click on any square, an X should show up in it.
+
+[View the current code.](https://codepen.io/gaearon/pen/VbbVLg?editors=0010)
+
+<br>
+
+### Developer Tools (개발자 도구)
+
+- The React Devtools extension(개발자 도구 확장 프로그램) for <u>Chrome</u> and <u>Firefox</u> lets you inspect(검사할 수 있게 해준다) a React component tree in your browser devtools.
+- It lets you inspect the props and state of any of the components in your tree.
+- After installing it, you can right-click any element on the page, click 'inspect' to open the developer tools, and the React tab will appear as the last tab to the right.
+
+<br>
+
+### Lifting State Up (상태 들어올리기)
 
 - ​
