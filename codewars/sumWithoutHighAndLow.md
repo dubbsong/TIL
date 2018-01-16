@@ -12,7 +12,7 @@ null or None, or if only 1 Element exists,
 
 return 0;
 
-
+<br>
 
 ### ***solution*** 01
 
@@ -34,7 +34,7 @@ function sumArray(array) {
 }
 ```
 
-
+<br>
 
 ### ***solution*** 02
 
@@ -42,7 +42,7 @@ function sumArray(array) {
 const sumArray = a => a ? a.sort((x, y) => x - y).slice(1, -1).reduce((s, e) => s + e, 0) : 0;
 ```
 
-
+<br>
 
 ### ***solution*** 03
 
@@ -54,7 +54,7 @@ function sumArray(array) {
 }
 ```
 
-
+<br>
 
 ### ***function call***
 

@@ -8,7 +8,7 @@ that takes an integer as an argument and returns
 
 "Even" for even numbers or "Odd" for odd numbers.
 
-
+<br>
 
 ### ***solution*** 01
 
@@ -18,7 +18,7 @@ function evenOrOdd(n) {
 }
 ```
 
-
+<br>
 
 ### ***solution*** 02
 
@@ -28,7 +28,7 @@ function evenOrOdd(n) {
 }
 ```
 
-
+<br>
 
 ### ***solution*** 03
 
@@ -36,7 +36,7 @@ function evenOrOdd(n) {
 const evenOrOdd = n => n % 2 ? 'Odd' : 'Even';
 ```
 
-
+<br>
 
 ### ***solution*** 04
 
@@ -50,7 +50,7 @@ function evenOrOdd(n) {
 }
 ```
 
-
+<br>
 
 ### ***function call***
 

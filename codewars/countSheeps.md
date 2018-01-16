@@ -14,7 +14,7 @@ in the array.
 
 (true means present)
 
-
+<br>
 
 ### *an array*
 
@@ -27,9 +27,7 @@ var array = [true,  true,  true,  false,
              false, false, true,  true];
 ```
 
-
-
-
+<br>
 
 ### ***solution*** 01
 
@@ -46,7 +44,7 @@ function countSheeps(array) {
 }
 ```
 
-
+<br>
 
 ### ***solution*** 02
 
@@ -56,7 +54,7 @@ function countSheeps(array) {
 }
 ```
 
-
+<br>
 
 ### ***solution*** 03
 
@@ -64,7 +62,7 @@ function countSheeps(array) {
 const countSheeps = array => array.filter(s => s).length;
 ```
 
-
+<br>
 
 ### ***function call***
 
