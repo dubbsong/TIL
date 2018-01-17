@@ -228,4 +228,6 @@ class Square extends React.Component {
 
 ### Lifting State Up (상태 들어올리기)
 
-- ​
+- To make a fully-working game(더 원활하게 동작하는 게임을 만들기 위해), we now need to check if one player has won the game, and alternate placing X and O in the squares(사각형 안에 X와 O를 번갈아 표시해야 한다).
+- When you want to aggregate data from multiple children or to have two child components communicate with each other(여러 하위 컴포넌트로부터 데이터를 모으거나 두 개의 하위 컴포넌트들이 서로 통신하기를 원한다면), move the state upwards so that it lives in the parent component(상위 컴포넌트 안으로 상태를 이동시켜라).
+- The parent can then pass the state back down to the children via props(상위 컴포넌트는 props를 통해 하위 컴포넌트로 상태를 전달해줄 수 있다), so that the child components are always in sync with each other and with the parent(그러면 하위 컴포넌트들은 항상 하위 컴포넌트나 상위 컴포넌트와 동기할 수 있다).

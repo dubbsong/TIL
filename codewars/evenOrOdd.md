@@ -10,7 +10,7 @@ that takes an integer as an argument and returns
 
 <br>
 
-### ***solution*** 01
+### ***solution 01*** 
 
 ```javascript
 function evenOrOdd(n) {
@@ -20,7 +20,7 @@ function evenOrOdd(n) {
 
 <br>
 
-### ***solution*** 02
+### ***solution 02*** 
 
 ```javascript
 function evenOrOdd(n) {
@@ -30,7 +30,7 @@ function evenOrOdd(n) {
 
 <br>
 
-### ***solution*** 03
+### ***solution 03*** 
 
 ```javascript
 const evenOrOdd = n => n % 2 ? 'Odd' : 'Even';
@@ -38,7 +38,7 @@ const evenOrOdd = n => n % 2 ? 'Odd' : 'Even';
 
 <br>
 
-### ***solution*** 04
+### ***solution 04*** 
 
 ```javascript
 function evenOrOdd(n) {

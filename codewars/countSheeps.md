@@ -16,7 +16,7 @@ in the array.
 
 <br>
 
-### *an array*
+### ***an array***
 
 ```javascript
 var array = [true,  true,  true,  false,
@@ -29,7 +29,7 @@ var array = [true,  true,  true,  false,
 
 <br>
 
-### ***solution*** 01
+### ***solution 01*** 
 
 ```javascript
 function countSheeps(array) {
@@ -46,7 +46,7 @@ function countSheeps(array) {
 
 <br>
 
-### ***solution*** 02
+### ***solution 02*** 
 
 ```javascript
 function countSheeps(array) {
@@ -56,7 +56,7 @@ function countSheeps(array) {
 
 <br>
 
-### ***solution*** 03
+### ***solution 03***
 
 ```javascript
 const countSheeps = array => array.filter(s => s).length;

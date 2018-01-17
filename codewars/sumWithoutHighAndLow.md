@@ -14,7 +14,7 @@ return 0;
 
 <br>
 
-### ***solution*** 01
+### ***solution 01*** 
 
 ```javascript
 function sumArray(array) {
@@ -36,7 +36,7 @@ function sumArray(array) {
 
 <br>
 
-### ***solution*** 02
+### ***solution 02*** 
 
 ```javascript
 const sumArray = a => a ? a.sort((x, y) => x - y).slice(1, -1).reduce((s, e) => s + e, 0) : 0;
@@ -44,7 +44,7 @@ const sumArray = a => a ? a.sort((x, y) => x - y).slice(1, -1).reduce((s, e) => 
 
 <br>
 
-### ***solution*** 03
+### ***solution 03*** 
 
 ```javascript
 function sumArray(array) {
