@@ -66,6 +66,8 @@ console.log(foo(10, 5));		// 50
 console.log(multiply(10, 5));	// Uncaught ReferenceError
 ```
 
+<br>
+
 - 함수는 일급 객체이기 때문에 변수에 할당할 수 있는데, 이 변수는 함수명이 아니라 할당된 함수를 가리키는 참조값을 저장하게 된다. 함수 호출시에 이 변수가 함수명처럼 사용된다.
 
 ```javascript
@@ -256,4 +258,240 @@ console.log(obj);	// {name: "Song", gender: "male"}
 ### 5. 반환값 (return value)
 
 - 함수는 자신을 호출한 코드에게 수행한 결과를 반환(return)할 수 있다.
+  - **return** 키워드는 함수를 호출한 코드(caller)에게 값을 반환할 때 사용한다.
+  - 함수는 배열 등을 이용하여 한 번에 여러 개의 값을 리턴할 수 있다.
+  - 함수는 반환을 생략할 수 있다. 이때 함수는 암묵적으로 undefined를 반환한다.
+  - 자바스크립트 해석기는 **return** 키워드를 만나면 함수의 실행을 중단한 후, 함수를 호출한 코드로 되돌아간다. 만일 **return** 키워드 이후에 다른 구문이 존재하면 그 구문은 실행되지 않는다.
 
+
+```javascript
+function calculateArea(width, height) {
+  var area = width * height;
+  return area;	// 단일 값의 반환
+}
+
+console.log(calculateArea(3, 5));	// 15
+console.log(calculateArea(8, 5));	// 40
+
+function getSize(width, height, depth) {
+  var area = width * height;
+  var volume = width * height * depth;
+  return [area, volume];	// 복수 값의 반환
+}
+
+console.log('area is ' + getSize(3, 2, 3)[0]);	// area is 6
+console.log('volume is ' + getSize(3, 2, 3)[1]);	// area is 18
+```
+
+<br>
+
+### 6. 함수 객체의 프로퍼티
+
+- 함수는 객체이다. 따라서 함수도 프로퍼티를 가질 수 있다.
+
+```javascript
+function square(number) {
+  return number * number;
+}
+
+square.x = 10;
+square.y = 20;
+
+console.log(square.x, square.y);
+```
+
+<br>
+
+- 함수는 일반 객체와는 다른 함수만의 표준 프로퍼티를 갖는다.
+
+```javascript
+function square(number) {
+  return number * number;
+}
+
+console.dir(square);
+```
+
+<br>
+
+#### 1) arguments 프로퍼티
+
+- arguments 객체는 함수 호출 시 전달된 인수(argument)들의 정보를 담고 있는 순회가능한(iterable) 유사 배열 객체(array-like object)이다.
+- 함수 객체의 arguments 프로퍼티는 arguments 객체를 값으로 가지며, 함수 내부에서 지역변수처럼 사용된다. 즉 함수 외부에서는 사용할 수 없다.
+- 자바스크립트는 함수 호출 시 함수 정의에 따라 인수를 전달하지 않아도 에러가 발생하지 않는다.
+
+```javascript
+function multiply(x, y) {
+  console.log(arguments);
+  return x * y;
+}
+
+multiply();			// {}
+multiply(1);		// { '0': 1 }
+multiply(1, 2);		// { '0': 1, '1': 2 }
+multiply(1, 2, 3);	// { '0': 1, '1': 2, '2': 3 }
+```
+
+<br>
+
+- 매개변수(parameter)는 인수(argument)로 초기화된다.
+  - 매개변수의 개수보다 인수를 적게 전달했을 때, 인수가 전달되지 않은 매개변수는 **undefined**로 초기화된다.
+  - 매개변수의 개수보다 인수를 더 많이 전달한 경우, 초과된 인수는 무시된다.
+- 이러한 자바스크립트의 특성 때문에 런타임 시에 호출된 함수의 인자 개수를 확인하고, 이에 따라 동작을 달리 정의할 필요가 있을 수 있다. 이때 유용하게 사용되는 것이 arguments 객체이다.
+- arguments 객체는 매개변수 개수가 확정되지 않은 **가변 인자 함수**를 구현할 때 유용하게 사용된다.
+
+```javascript
+function sum() {
+  var res = 0;
+  
+  for (var i = 0; i < arguments.length; i++) {
+    res += arguments[i];
+  }
+  return res;
+}
+
+console.log(sum());			// 0
+console.log(sum(1, 2));		// 3
+console.log(sum(1, 2, 3));	// 6
+```
+
+<br>
+
+- 자바스크립트는 함수를 호출할 때 인수들과 함께 암묵적으로 arguments 객체가 함수 내부로 전달된다. arguments 객체는 배열의 형태로 인자값 정보를 담고 있지만 실제 배열이 아닌 **유사 배열 객체(array-like object)이다.
+- 유사 배열 객체란, length 프로퍼티를 가진 객체를 말한다. 유사 배열 객체는 배열이 아니므로 배열 메소드를 사용하는 경우에 에러가 발생하게 된다. 따라서 배열 메소드를 사용하려면 **Function.prototype.call, Function.prototype.apply**를 사용해야 하는 번거로움이 있다.
+
+```javascript
+function sum() {
+  if (!arguments.length) return 0;
+  
+  // arguments 객체를 배열로 변환
+  var array = Array.prototype.slice.call(arguments);
+  return array.reduce(function (pre, cur) {
+    return pre + cur;
+  });
+}
+
+console.log(sum(1, 2, 3, 4, 5));	// 15
+```
+
+<br>
+
+#### 2) caller 프로퍼티
+
+- caller 프로퍼티는 자신을 호출한 함수를 의미한다.
+
+```javascript
+function foo(func) {
+  var res = func();
+  return res;
+}
+
+function bar() {
+  return 'caller : ' + bar.caller;
+}
+
+console.log(foo(bar));	// function foo(func) {...}
+console.log(bar());		// null (browser에서의 실행 결과)
+```
+
+<br>
+
+#### 3) length 프로퍼티
+
+- length 프로퍼티는 함수 정의 시 작성된 매개변수 개수를 의미한다.
+
+```javascript
+function foo() {}
+console.log(foo.length);	// 0
+
+function bar(x) {
+  return x;
+}
+console.log(bar.length);	// 1
+
+function baz(x, y) {
+  return x * y;
+}
+console.log(baz.length);	// 2
+```
+
+- arguments.length의 값과는 다를 수 있으므로 주의해야 한다. arguments.length는 함수 호출 시 인자의 개수이다.
+
+<br>
+
+#### 4) name 프로퍼티
+
+- 함수명을 나타낸다. 기명 함수의 경우 함수명을 값으로 갖고, 익명 함수의 경우 빈문자열을 값으로 갖는다.
+
+```javascript
+// 기명 함수표현식
+var namedFunc = function multiply(a, b) {
+  return a * b;
+};
+
+// 익명 함수표현식
+var anonymousFunc = function(a, b) {
+  return a * b;
+};
+
+console.log(namedFunc.name);		// multiply
+console.log(anonymousFunc.name);	// ''
+```
+
+<br>
+
+#### 5) \__proto__ 프로퍼티
+
+- ECMAScript spec에서는 **모든 객체는 자신의 프로토타입을 가리키는 [[Prototype]]이라는 숨겨진 프로퍼티를 가진다**라고 되어 있다. 크롬, 파이어폭스 등에서는 숨겨진 [[Prototype]] 프로퍼티가 \__proto__ 프로퍼티로 구현되어 있다. 
+- 즉, \__proto__와 [[Prototype]]은 같은 개념이다.
+
+```javascript
+function square(number) {
+  return number * number;
+}
+console.dir(square);
+```
+
+- square() 함수 역시 객체이므로 [[Prototype]] 프로퍼티(\__proto__ 프로퍼티)를 가지며, 이를 통해 자신의 부모 역할을 하는 프로토타입 객체를 가리킨다.
+- 함수의 프로토타입 객체는 **Function.prototype**이며, 이것 역시 함수이다.
+
+<br>
+
+#### 6) prototype 프로퍼티
+
+- 함수 객체만이 가지고 있는 프로퍼티이다.
+- 자바스크립트 객체 지향의 근간이다.
+- **모든 함수 객체는 prototype 프로퍼티를 갖는다. 주의해야 할 것은 prototype 프로퍼티는 프로토타입 객체를 가리키는 [[Prototype]] 프로퍼티(\__proto__ 프로퍼티)와는 다르다는 것이다.**
+  - [[Prototype]] 프로퍼티
+    - 모든 객체가 가지고 있는 프로퍼티이다.
+    - **객체의 입장에서 자신의 부모 역할을 하는 프로토타입 객체를 가리키며, 함수 객체의 경우 Function.prototype을 가리킨다.
+  - prototype 프로퍼티
+    - 함수 객체만 가지고 있는 프로퍼티이다.
+    - **함수 객체가 생성자로 사용될 때 이 함수를 통해 생성된 객체의 부모 역할을 하는 객체를 가리킨다.**
+    - 함수가 생성될 때 만들어지며 **constructor** 프로퍼티를 가지는 객체를 가리킨다. 이 **constructor** 프로퍼티는 함수 객체 자신을 가리킨다.
+
+```javascript
+function square(number) {
+  return number * number;
+}
+
+// console.dir(square);
+console.dir(square.__proto__);
+console.dir(square.prototype);
+
+console.log(square.__proto__ === Function.prototype);	// true (1)
+console.log(square.__proto__ === square.prototype);		// false
+console.log(square.prototype.constructor === square);	// true (2)
+console.log(square.__proto__.constructor === square.prototype.constructor);	// false
+```
+
+- **[[Prototype]] 프로퍼티는 함수 객체의 부모 객체(Function.prototype)를 가리키며 prototype 프로퍼티는 함수 객체가 생성자 함수로 사용되어 객체를 생성할 때 생성된 객체의 부모 객체 역할을 하는 객체를 가리킨다.**
+
+<br>
+
+### 7. 함수의 다양한 형태
+
+#### 1) 즉시호출 함수표현식 (IIFE, Immediately Invoke Function Expression)
+
+- 함수의 정의와 동시에 실행되는 함수를 즉시호출 함수라고 한다.
+- 최초 한 번만 호출되며, 다시 호출할 수는 없다.
