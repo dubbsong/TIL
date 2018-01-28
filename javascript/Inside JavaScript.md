@@ -31,8 +31,6 @@ function object(o) {
 
 <br>
 
-<br>
-
 ### 1. 소개
 
 - 자바스크립트는 웹 브라우저에서 동작하는 스크립트 언어이다.
@@ -236,6 +234,297 @@ console.log(nullVar === null);			// true
 <br>
 
 #### 1)) 객체 생성
+
+- 자바에서는 클래스를 정의하고, 클래스의 인스턴스를 생성하는 과정에서 객체가 만들어진다.
+- 자바스크립트에서는 클래스라는 개념이 없고, 객체 리터럴이나 생성자 함수 등 별도의 생성 방식이 존재한다.
+- 자바스크립트에서 객체를 생성하는 방법은 크게 세 가지가 있다. **Object() 객체 생성자 함수**를 이용하는 방법, **객체 리터럴**을 이용하는 방법, **생성자 함수**를 이용하는 방법이다.
+
+<br>
+
+<br>
+
+###### 1))) Object() 생성자 함수
+
+```javascript
+var foo = new Object(); 	// 빈 객체 생성
+
+foo.name = 'foo';			// 객체 프로퍼티 생성
+foo.age = 30;
+foo.gender = 'male';
+
+console.log(typeof foo);	// object
+console.log(foo);			// {name: "foo", age: 30, gender: "male"}
+```
+
+<br>
+
+<br>
+
+###### 2))) 객체 리터럴
+
+- 리터럴이란 용어의 의미는 표기법이라고 생각하면 된다. 따라서 객체 리터럴이란 객체를 생성하는 표기법을 의미한다.
+- 간단한 표기법만으로도 객체를 생성할 수 있는 강력한 자바스크립트 문법이다.
+- 객체 리터럴은 중괄호({})를 이용해서 객체를 생성한다.
+- {} 안에 아무것도 적지 않은 경우는 빈 객체가 생성되며, 중괄호 안에 "프로퍼티 이름" : "프로퍼티값" 형태로 표기하면, 해당 프로퍼티가 추가된 객체를 생성할 수 있다.
+- 프로퍼티 이름은 문자열이나 숫자가 올 수 있다.
+- 프로퍼티 값으로는 자바스크립트의 값을 나타내는 어떤 표현식도 올 수 있으며, 이 값이 함수일 경우 이러한 프로퍼티를 **메소드**라고 부른다.
+
+```javascript
+var foo = {				// 객체 리터럴 방식으로 객체 생성
+  name : 'foo',
+  age: 30,
+  gender: 'male'
+};
+
+console.log(typeof foo);		// object
+console.log(foo);				// {name: "foo", age: 30, gender: "male"}
+```
+
+<br>
+
+<br>
+
+###### 3))) 생성자 함수 이용
+
+- 자바스크립트의 경우 함수를 통해서도 객체를 생성할 수 있다.
+
+<br>
+
+<br>
+
+#### 2)) 객체 프로퍼티 읽기/쓰기/갱신
+
+- 객체는 새로운 값을 가진 프로퍼티를 생성하고, 생성된 프로퍼티에 접근해서 해당 값을 읽거나 또는 원하는 값으로 프로퍼티의 값을 갱신할 수 있다.
+- 객체의 프로퍼티에 접근하는 두 가지 방법
+  - 대괄호([]) 표기법
+  - 마침표(.) 표기법
+
+```javascript
+var foo = {
+  name: 'foo',
+  major: 'computer science'
+};
+
+
+// 객체 프로퍼티 읽기
+console.log(foo.name);		// foo
+console.log(foo['name']);	// foo
+console.log(foo.nickname);	// undefined
+
+
+// 객체 프로퍼티 갱신
+foo.major = 'civil engineering';
+console.log(foo.major);		// civil engineering
+console.log(['major']);		// civil engineering
+
+
+// 객체 프로퍼티 동적 생성
+foo.age = 30;
+console.log(foo.age);;		// 30
+
+
+// 대괄호 표기법을 사용해야 하는 경우
+foo['full-name'] = 'foo bar';
+console.log(foo['full-name']);		// foo bar
+console.log(foo.full-name);			// NaN
+console.log(foo.full);				// undefined
+console.log(name);					// undefined
+```
+
+<br>
+
+- NaN(Not a Number)는 수치 연산을 해서 정상적인 값을 얻지 못할 때 출력되는 값이다. 가령 1- 'hello'라는 연산의 결과는 NaN이다.
+
+<br>
+
+<br>
+
+#### 3)) for in 문과 객체 프로퍼티 출력
+
+- for in 문을 사용하면 객체에 포함된 모든 프로퍼티에 대해 루프를 수행할 수 있다.
+
+```javascript
+var foo = {
+  name: 'foo',
+  age: 30,
+  major: 'computer science'
+};
+
+
+// for in 문을 이용한 객체 프로퍼티 출력
+var prop;
+for (prop in foo) {
+  console.log(prop, foo[prop]);
+}									// name foo
+									// age 30
+									// major computer science
+```
+
+<br>
+
+<br>
+
+#### 4)) 객체 프로퍼티 삭제
+
+- 자바스크립트에서는 객체의 프로퍼티를 **delete 연산자**를 이용해 즉시 삭제할 수 있다.
+- 주의할 점은 delete 연산자는 객체의 프로퍼티를 삭제할 뿐, 객체 자체를 삭제하지는 못한다는 것이다.
+
+```javascript
+var foo = {
+  name: 'foo',
+  nickname: 'babo'
+};
+
+console.log(foo.nickname);		// babo
+delete foo.nickname;
+console.log(foo.nickname);		// undefined
+
+delete foo;						// 객체 삭제 시도
+console.log(foo.name);			// foo
+```
+
+<br>
+
+<br>
+
+### 3) 참조 타입의 특성
+
+- 자바스크립트에서는 기본 타입인 숫자, 문자열, 불린값, null, undefined 5가지를 제외한 모든 값은 객체다. 배열이나 함수 또한 객체로 취급된다. 이러한 객체는 자바스크립트에서 참조 타입이라고 부른다.객체의 모든 연산이 실제 값이 아닌 참조값으로 처리되기 때문이다.
+
+```javascript
+var objA = {
+  val: 40
+};
+
+var objB = objA;
+
+console.log(objA.val);		// 40
+console.log(objB.val);		// 40
+
+
+objB.val = 50;
+console.log(objA.val);		// 50
+console.log(objB.val);		// 50
+```
+
+- objA와 objB 모두 동일한 객체를 참조하고 있다.
+- 변수 objA는 실제로는 객체를 참조하는 값을 저장할 뿐 실제 객체를 나타내지는 않는다. 따라서 **objA 객체는 참조 변수 objA가 가리키고 있는 객체**를 나타낸다고 생각하자.
+
+<br>
+
+<br>
+
+#### 1) 객체 비교
+
+동등 연산자(==)를 사용하여 두 객체를 비교할 때도 객체의 프로퍼티값이 아닌 참조값을 비교한다는 것에 주의하자.
+
+```javascript
+var a = 100;
+var b = 100;
+
+var objA = {value: 100};
+var objB = {value: 100};
+var objC = objB;
+
+console.log(a == b);			// true
+console.log(objA == objB);		// false
+console.log(objB == objC);		// true
+```
+
+- a와 b는 기본 타입의 변수다. 기본 타입의 경우 동등 연산자(==)를 이용해서 비교할 때 **값을 비교한다.**
+- objA와 objB는 다른 객체지만, 같은 형태의 프로퍼티값을 가지고 있다. 하지만 동등 연산자(==)로 두 객체를 비교하면 결과는 false가 된다. 기본 타입의 경우는 값 자체를 비교해서 일치 여부를 판단하지만, 객체와 같은 참조 타입의 경우는 **참조값이 같아야 true**가 된다.
+- objB와 objC는 동일한 객체를 참조하고 있다.
+
+<br>
+
+<br>
+
+#### 2)) 참조에 의한 함수 호출 방식
+
+- 기본 타입과 참조 타입의 경우는 함수 호출 방식도 다르다.
+- 기본 타입의 경우는 **값에 의한 호출(Call By Value) 방식**으로 동작한다. 즉, 함수를 호출할 때 인자로 기본 타입의 값을 넘길 경우, 호출된 함수의 매개변수로 **복사된 값**이 전달된다. 때문에 함수 내부에서 매개변수를 이용해 값을 변경해도, 실제로 호출된 변수의 값이 변경되지는 않는다.
+- 객체와 같은 참조 타입의 경우는 함수를 호출할 때 **참조의 의한 호출(Call By Reference) 방식**으로 동작한다. 즉, 함수를 호출할 때 인자로 참조 타입인 객체를 전달할 경우, 객체의 프로퍼티값이 함수의 매개변수로 복사되지 않고, 인자로 넘긴 객체의 참조값이 그대로 함수 내부로 전달된다. 때문에 함수 내부에서 참조값을 이용해서 인자로 넘긴 실제 객체의 값을 변경할 수 있는 것이다.
+
+```javascript
+var a = 100;
+var objA = {value: 100};
+
+function changeArg(num, obj) {
+  num = 200;
+  obj.value = 200;
+  
+  console.log(num);		// 200
+  console.log(obj);		// {value: 200}
+}
+
+changeArg(a, objA);
+
+console.log(a);			// 100
+console.log(objA);		// {value: 200}
+```
+
+- changeArg() 함수를 호출하면서, 인자값으로 기본 타입인 숫자를 가진 변수 a와 참조 타입인 객체 objA를 넘겼다. 함수 내부에서 매개변수 num과 obj를 이용해 인자로 전달된 a와 objA.val의 값을 100에서 200으로 바꿨지만, 함수 호출이 끝난 후에는 참조 타입인 객체의 objA.value 프로퍼티만이 실제 값으로 변해 있다는 것을 확인할 수 있다.
+- 함수 내부에서 매개변수 num을 이용해서 100을 200으로 바꿔도 변수 a의 값은 변하지 않는다는 것을 알 수 있다. 반면에 객체의 경우는 매개변수 obj로 objA가 참조하는 객체의 위치 값이 그대로 전달되므로 실제 객체의 value 프로퍼티값이 changeArg() 함수 호출 후에도 적용되는 것이다.
+
+<br>
+
+<br>
+
+### 4) 프로토타입
+
+- 자바스크립트의 **모든 객체는 자신의 부모 역할을 하는 객체와 연결되어 있다.** 그리고 이것은 마치 객체지향의 상속 개념과 같이 부모 객체의 프로퍼티를 마치 자신의 것처럼 쓸 수 있는 것 같은 특징이 있다. 이러한 부모 객체를 **프로토타입 객체**(짧게는 **프로토타입**)라고 부른다.
+
+```javascript
+var foo = {
+  name: 'foo',
+  age: 30
+};
+
+console.log(foo.toString());  // [object Object]
+console.dir(foo);			  // ▼Object
+							  //		age: 30
+							  //		name: "foo"
+							  //	  ▼__proto__: Object
+							  //		▶︎constructor: ƒ Object()
+							  //		▶︎hasOwnProperty: ƒ hasOwnProperty()
+							  //		▶︎isPrototypeOf: ƒ isPrototypeOf()
+							  //		▶︎propertyIsEnumerable: ƒ propertyIsEnumerable()
+							  //		▶︎toLocaleString: ƒ toLocaleString()
+							  //		▶︎toString: ƒ toString()
+							  //		▶︎...
+```
+
+- foo 객체는 toString() 메소드가 없으므로 에러가 발생해야 하지만, 정상적으로 결과가 출력되었다. 에러가 발생하지 않고 예제가 실행될 수 있는 이유는 **foo 객체의 프로토타입**에 toString() 메소드가 이미 정의되어 있고, foo 객체가 상속처럼 toString() 메소드를 호출했기 때문이다.
+- 실행결과를 보면, 객체 리터럴로 생성한 name과 age 프로퍼티 이외에도 foo 객체에 **\_\_proto\_\_프로퍼티**가 있다는 것을 확인할 수 있다. 이 프로퍼티가 바로 foo 객체의 부모인 **프로토타입 객체**를 가리킨다. 이 객체의 다음 부분에 toString() 메소드가 정의되어 있다는 것을 알 수 있다. 때문에 foo.toString() 메소드가 제대로 출력된 것이다.
+
+<br>
+
+- ECMAScript 명세서에는 자바스크립트의 **모든 객체는 자신의 프로토타입을 가리키는 [[Prototype]]이라는 숨겨진 프로퍼티**를 가진다고 설명하고 있다.
+- 크롬 브라우저에서는 \_\_proto\_\_가 바로 이 숨겨진 [[Prototype]] 프로퍼티를 의미한다.
+- foo 객체는 자신의 부모 객체를 \_\_proto\_\_라는 내부 프로퍼티로 연결하고 있는 것이다.
+- 모든 객체의 프로토타입은 자바스크립트의 룰에 따라 객체를 생성할 때 결정된다.
+- 객체 리터럴 방식으로 생성된 객체의 경우 **Object.prototype 객체**가 프로토타입 객체가 된다.
+- foo 객체는 foo.toString()과 같이 자신의 프로토타입인 Object.prototype 객체에 포함된 다양한 메소드를 자신의 프로퍼티인 것처럼 상속받아 사용할 수 있다.
+- 부모 객체를 동적으로 바꿀 수도 있다. 이러한 특징을 활용해서 객체 상속 등의 기능을 구현한다.
+
+<br>
+
+<br>
+
+### 5) 배열
+
+- 배열은 자바스크립트 객체의 특별한 형태다.
+- C언어나 자바의 배열과 같은 기능을 하는 객체지만, 이들과는 다르게 크기를 지정하지 않아도 되고, 어떤 위치에 어느 타입의 데이터를 저장하더라도 에러가 발생하지 않는다.
+
+<br>
+
+<br>
+
+#### 1)) 배열 리터럴
+
+- 52p
+
+
 
 
 
