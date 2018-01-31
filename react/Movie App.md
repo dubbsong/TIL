@@ -231,10 +231,10 @@
   ]
 
   const movieImages = [
-    "",
-    "",
-    "",
-    ""
+    "https://is2-ssl.mzstatic.com/image/thumb/Video22/v4/71/09/3b/71093bba-626b-e900-0c05-f0a97b2070f2/source/1200x630bb.jpg",
+    "http://www.video2k.is/data/yify/medium_cover/51486.jpg",
+    "https://is1-ssl.mzstatic.com/image/thumb/Music6/v4/a1/66/b8/a166b81c-0f6b-c751-6472-32bac5cf7ff0/886444332415.jpg/1200x630bb.jpg",
+    "http://www.mjyoung.net/imgsrc/About04.jpg"
   ]
 
   // class App extends Component {
