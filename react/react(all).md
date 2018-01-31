@@ -1,9 +1,16 @@
 - 페이스북과 인스타그램에서 사용자 경험을 향상하기 위해 만든 라이브러리.
 - React는 페이스북에서 개발한 자바스크립트 라이브러리이다.
+- React는 동적 사용자 인터페이스를 쉽게 구축할 수 있는 자바스크립트 라이브러리이다.
+- React는 페이스북이 웹 UI를 개발할 때 사용하려고 만든 자바스크립트 라이브러리이다.
 - React는 사용자 인터페이스(User Interface)를 구축하기 위한 선언적(declarative)이고 효율적(efficient)이며 유연한(flexible) JavaScript 라이브러리이다.
 - React는 페이스북이 만든, MVC 패턴 중 V를 담당하는 라이브러리이다.
 - 프레임워크가 아니다. 사용자 인터페이스 라이브러리이다.
 - React는 라이브러리이기는 하지만 Redux나 MobX, react-router와 함께 프레임워크처럼 사용된다.
+- React의 특징은 크게 3가지를 꼽을 수 있다
+  1. JSX (JavaScript XML)
+  2. 가상 DOM (Virtual DOM)
+  3. 단방향 데이터 플로우 (Unidirectional Data Flow)
+- 애플리케이션의 데이터가 변경되면, React는 어느 부분을 변경해야하는지 파악하고 즉시 해당 부분만 업데이트한다.
 - 애플리케이션의 각 상태에 대한 간단한 뷰를 설계하면 React는 데이터가 변경될 때 적절한 구성요소만 효과적으로 업데이트하고 렌더링한다.
 - Angular, Vue와 함께 프론트 프레임워크 3대장이라고 불린다.
 - 컴포넌트 시스템을 구현했기 때문에 매우 효율적으로 코딩할 수 있다.
@@ -266,4 +273,90 @@ function Avatar(props) {
 
 - 컴포넌트를 함수나 클래스 중 어떤 걸로 선언했건 props를 수정할 수 없다.
 - **모든 React 컴포넌트는 props와 관련한 동작을 할 때 순수 함수처럼 동작해야 한다.**
+- 컴포넌트의 완벽한 예는 HTML의 \<select> 엘리먼트다.
+- 리액트 컴포넌트는 기존 템플릿처럼 HTML을 출력할뿐만 아니라, 해당 출력을 제어하는 데 필요한 모든 코드도 포함한 단일 객체이다.
+- 실제로 리액트 컴포넌트를 작성하는 가장 일반적인 방법은 HTML을 리턴하는 render 메소드가 포함된 ES6 클래스다.
+- props는 컴포넌트가 서로 커뮤니케이션(talk)하는 방식이다.
+
+```react
+class ParentComponent extends React.Component {
+  render() {
+    return <ChildComponent message="Hello World" />;
+  }
+}
+
+class ChildComponent extends React.Component {
+  render() {
+    return <p>And then I said, "{this.props.message}"</p>;
+  }
+}
+```
+
+- 이 때문에 React의 데이터 흐름(data flow)은 **단방향**이다. 데이터는 부모(parent) 컴포넌트에서 자식(children)으로만 이동할 수 있다.
+- 때로는 컴포넌트가 부모 컴포넌트에서 가져오지 않은 데이터(예: 사용자 입력)를 처리(react)해야 한다. 이런 상황에서 **state**가 필요한 것이다.
+- props와 state 사이의 차이점을 이해하는 좋은 은유는, **Etch-A-Scktch**(양쪽 휠로 그림 그리는 스크린)이다. Etch-A-Scktch 타블렛(**props**)의 바디 컬러와 다이얼 위치와는 달리, 드로잉 자체(**state**)는 Etch-A-Scktch의 고유한 특성이 아니다. 사용자 입력의 일시적인 결과일 뿐이다.
+- 컴포넌트의 **state**는 자식 컴포넌트에 **prop**으로 전달될 수 있다는 것에 주목하자.
+- 컴포넌트 내부에서 state는 **setState** 함수를 사용하여 관리된다. 이 함수는 종종 이벤트 핸들러 내부에서 호출된다.
+
+```react
+class MyComponent extends React.Component {
+  handleClick = (e) => {
+    this.setState({clicked: true});
+  }
+  render() {
+    return <a href="#" onClick={this.handleClick}>Click me</a>;
+  }
+}
+```
+
+- 실제 React 앱의 대다수 데이터는 prop이 될 것이다. 당신이 유저 입력 데이터를 처리해야 할 때만 state가 필요할 것이다.
+- render 및 setState, 이 두 가지 모두 작은 컴포넌트 API 메소드 집합의 일부이다. 또 다른 유용한 방법은 state를 초기화하고 메소드를 바인딩하는 데 사용할 수 있는 **생성자(constructor)**이다.
+- React를 배우는 것이 실제로 지루한 API 메소드를 배우는 것 보다는 프로그래밍 및 아키텍처 개념을 마스터하는 것이 훨씬 더 중요하다.
+- 컴포넌트 타입(Component Types) 동작 방식
+
+```react
+class MyComponent extends React.Component {
+  render() {
+    return <p>Hello World!</p>;
+  }
+}
+```
+
+<br>
+
+- 함수형 컴포넌트는 props 객체를 인수로 사용하여 HTML을 반환하는 함수다.
+
+```react
+const myComponent = props => {
+  return <p>Hello {props.name}! Today is {new Date()}.</p>
+}
+```
+
+<br>
+
+- **createClass** 함수를 사용하는 레거시 구문도 있다. 그러나 누군가 18개월 전(오래된) 코딩 패턴을 여전히 사용하고 있는 것은 부끄러워 해야 한다.
+
+```react
+var Greeting = React.createClass({
+  render: function() {
+    return <h1>Hello, {this.props.name}</h1>;
+  }
+});
+```
+
+<br>
+
+- React 코드베이스는 컴포넌트로 구성된다.
+- 컴포넌트는 JSX를 사용하여 작성된다.
+- 데이터는 컴포넌트 내부에서 발생하는 state를 제외하고 부모에서 자식으로 흐른다.
+- 데이터 로직과 UI 로직은 별도의 컴포넌트로 분리해야 한다.
+- 아무리 추상적이거나 모호한 패턴이라도 React의 가장 핵심은 항상 함수와 props다.
+- React는 컴포넌트 객체의 상태를 props와 state, 2가지로 구분해서 관리한다.
+- state에 있는 어떤 값을 변경할 때는 state 객체에 직접 접근하는 게 아니라, React가 제공하는 setState 메소드를 이용한다. setState 함수를 이용해서 값을 변경하면 해당 프로퍼티가 바인딩 되어 있는 HTML Element의 값을 React가 자동으로 갱신해준다.
+- props는 컴포넌트에서 사용할 변경 불가능한 데이터를 지칭.
+- props는 parent 컴포넌트에서 child 컴포넌트로 데이터를 전달할 때 사용.
+- state는 컴포넌트에서 변경 가능한 데이터를 지칭.
+- state는 외부에서 데이터를 변경할 때 this.setState()를 사용.
+- 컴포넌트의 UI 상태를 업데이트 할 때는 setState 메소드 사용. (몇 번을 강조해도 지나침이 없다고 생각되는 내용)
 - ​
+
