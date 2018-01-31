@@ -37,6 +37,8 @@
   - 우리는 **index.js**에 파일을 만들고 있다.
   - **ReactDOM**은 React를 웹사이트에 출력(render)하는 것을 도와주는 모델.
 
+<br>
+
 - 새로운 컴포넌트 생성
   `src/Movie.js`
   `src/Movie.css`
