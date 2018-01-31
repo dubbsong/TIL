@@ -32,19 +32,15 @@
   }
   ```
 
-- 모든 컴포넌트는 **render 함수**를 가지고 있다.
-
-- render의 기능은 **'무언가를 보여주는, 출력하는'** 기능.
-
-- 우리는 **index.js**에 파일을 만들고 있다.
-
-- **ReactDOM**은 React를 웹사이트에 출력(render)하는 것을 도와주는 모델.
-
-- React를 모바일에 올리고 싶으면, **ReactNative**를 사용.
+  - 모든 컴포넌트는 **render 함수**를 가지고 있다.
+  - render의 기능은 **'무언가를 보여주는, 출력하는'** 기능.
+  - 우리는 **index.js**에 파일을 만들고 있다.
+  - **ReactDOM**은 React를 웹사이트에 출력(render)하는 것을 도와주는 모델.
 
 - 새로운 컴포넌트 생성
   `src/Movie.js`
   `src/Movie.css`
+
 
 - ```react
   // Movie.js
@@ -75,6 +71,9 @@
   //     return (
   //  	 <div className="App">
         		<Movie />
+        		<Movie />
+        		<Movie />
+        		<Movie />
   //       </div>
   //     );
   //   }
@@ -87,7 +86,9 @@
   // http://localhost:3000/
 
   CAPTAIN FANTASTIC
+  CAPTAIN FANTASTIC
+  CAPTAIN FANTASTIC
+  CAPTAIN FANTASTIC
   ```
 
 - ​
-
