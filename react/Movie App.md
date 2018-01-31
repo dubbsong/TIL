@@ -42,6 +42,8 @@
 
 <br>
 
+#### Creating React Components with JSX
+
 - 새로운 컴포넌트 생성
   `src/Movie.js`
   `src/Movie.css`
@@ -120,6 +122,8 @@
 - **props**를 통해서 부모가 자식에게 정보를 준다.
 
 <br>
+
+#### Dataflow with Props (1)
 
 - ```react
   // App.js
@@ -205,6 +209,8 @@
 - 이것이 React다. 부모 컴포넌트가 자식 컴포넌트에게 정보를 주는 것이다.
 
 <br>
+
+#### Dataflow with Props (2)
 
 - ```react
   // App.js
@@ -301,5 +307,7 @@
 - 여기까지가 **props**와 **컴포넌트**였다.
 
 <br>
+
+#### List with .map
 
 - ​
