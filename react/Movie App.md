@@ -1,5 +1,9 @@
 ## Movie App
 
+<br>
+
+### Creating React Components with JSX (1)
+
 - `Desktop song$ sudo npm install -g create-react-app`
   `create-react-app movie_app`
   `cd movie_app`
@@ -42,7 +46,7 @@
 
 <br>
 
-#### Creating React Components with JSX
+### Creating React Components with JSX (2)
 
 - 새로운 컴포넌트 생성
   `src/Movie.js`
@@ -123,7 +127,7 @@
 
 <br>
 
-#### Dataflow with Props (1)
+### Dataflow with Props (1)
 
 - ```react
   // App.js
@@ -210,7 +214,7 @@
 
 <br>
 
-#### Dataflow with Props (2)
+### Dataflow with Props (2)
 
 - ```react
   // App.js
@@ -308,6 +312,6 @@
 
 <br>
 
-#### List with .map
+### List with .map
 
 - ​
