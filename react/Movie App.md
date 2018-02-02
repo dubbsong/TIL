@@ -1064,4 +1064,229 @@
 
 - `fetch`가 좋은 이유는, url을 Ajax로 심플하게 불러올 수 있기 때문이다.
 
+<br>
+
+### Async Await in React
+
+- Await, Async는 위에 작성한 라인들을 좀 더 분명하게 작성해주는 도구이다.
+
+- CALLBACK HELL: then, then, then..이 많아져서 길을 잃어버리는 것.
+
+  ```react
+  .then(() => .then())
+  CALLBACK HELL!
+  ```
+
+- ```react
+  // App.js
+
+  // import React, { Component } from 'react';
+  // import './App.css';
+  // import Movie from './Movie';
+
+  // class App extends Component {
+
+  // state = {}
+
+  componentDidMount() {
+  	this._getMovies();
+  }
+
+  _renderMovies = () => {
+     const movies = this.state.movies.map((movie, index) => {
+  //    console.log(movie)
+        return <Movie title={movie.title} poster={movie.large_cover_image} key={movie.id} />
+     })
+     return movies
+  }
+
+  _getMovies = async () => {
+  	const movies = await this._callApi()
+      this.setState({
+        movies
+      })
+  }
+
+  _callApi = () => {
+     return fetch('https://yts.am/api/v2/list_movies.json?sort_by=rating')
+     .then(response => response.json())
+     .then(json => json.data.movies)
+     .catch(err => console.log(err))
+  }
+
+  //	render() {	
+  //		return (
+  //			<div className="App">
+  //            	{this.state.movies ? this._renderMovies() : 'Loading'}
+  //			</div>
+  //		);
+  //	  }
+  //  }
+
+  // export default App;
+  ```
+
+  ```react
+  // http://localhost:3000/
+
+  img (The Shawshank Redemption)
+  The Shawshank Redemption
+
+  img (The Godfather)
+  The Godfather
+
+  ...
+  ```
+
+- fetch를 callApi로 변경
+
+- get movies는 asynchronous function이다.
+
+- 컴포넌트의 key를 index로 사용하는 것은 좋지 않다. 느리다.
+
+- **await**. It means that we want to wait for the Promise() to finish before continue.
+
+<br>
+
+### Updating Component
+
 - ​
+
+- ```react
+  // App.js
+
+  // import React, { Component } from 'react';
+  // import './App.css';
+  // import Movie from './Movie';
+
+  // class App extends Component {
+
+  // state = {}
+
+  // componentDidMount() {
+  // 	  this._getMovies();
+  // }
+
+  _renderMovies = () => {
+     const movies = this.state.movies.map((movie, index) => {
+  //    console.log(movie)
+        return <Movie 
+                 title={movie.title_english} 
+                 poster={movie.medium_cover_image} 
+                 key={movie.id}
+                 genres={movie.genres}
+                 synopsis={movie.synopsis}
+  	  />
+     })
+     return movies
+  }
+
+  _getMovies = async () => {
+  	const movies = await this._callApi()
+      this.setState({
+        movies
+      })
+  }
+
+  _callApi = () => {
+     return fetch('https://yts.am/api/v2/list_movies.json?sort_by=rating')
+     .then(response => response.json())
+     .then(json => json.data.movies)
+     .catch(err => console.log(err))
+  }
+
+  //	render() {	
+  //		return (
+  //			<div className="App">
+  //            	{this.state.movies ? this._renderMovies() : 'Loading'}
+  //			</div>
+  //		);
+  //	  }
+  //  }
+
+  // export default App;
+  ```
+
+  ```react
+  // Movie.js
+
+  // import React from 'react';
+  // import propTypes from 'prop-types';
+  // import './Movie.css';
+
+
+  function Movie({title, poster, genres, synopsis}) {
+  	return (
+      	<div className="Movie">
+          	<div className="Movie__Columns">
+          		<MoviePoster poster={poster} alt={title} />
+          	</div>
+          	<div className="Movie__Columns">
+  	        	<h1>{title}</h1>
+                	<div className="Movie__Genres">
+                		{genres.map((genre, index) => <MovieGenre genre={genre} key={index} />)}
+                	</div>
+                	<p className="Movie__Synopsis">
+                		{synopsis}
+                	</p>
+          	</div>
+        	</div>
+      )
+  }
+       
+  function MoviePoster({poster, alt}) {
+  	return (
+      	<img src={poster} alt={alt} title={alt} className="Movie__Poster" />
+      )
+  }
+
+  function MovieGenre({genre}) {
+    return (
+    	<span className="Movie__Genre">{genre} </span>
+    )
+  }
+
+  MoviePoster.propTypes = {
+  	title: propTypes.string.isRequired,
+    	poster: propTypes.string.isRequired,
+    	genres: propTypes.string.isRequired,
+    	synopsis: propTypes.string.isRequired
+  }
+
+  MoviePoster.propTypes = {
+  	poster: propTypes.string.isRequired,
+    	alt: propTypes.string.isRequired
+  }
+
+  MovieGenre.prototypes = {
+    	genre: propTypes.string.isRequired
+  }
+
+  // export default Movie;
+  ```
+
+  ```react
+  // http://localhost:3000/
+
+  img
+  The Shawshank Redemption
+
+  Action Crime Drama
+
+  Chronicles the experiences of a formerly...
+
+  ...
+
+  // 마우스오버하면 제목 hover
+  ```
+
+- props 추가
+
+- 기본 HTML 작업 (JSX로 클래스명 추가, 칼럼-무비 포스터 만들고, 장르 array 맵핑, 무비 시놉시스 클래스 만들기, alt 이미지 만들기)
+
+<br>
+
+### Giving some CSS to
+
+- `yarn add react-lines-ellipsis`
+- 여기서부터는 깃헙 참조
