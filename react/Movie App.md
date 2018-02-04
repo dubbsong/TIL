@@ -49,59 +49,59 @@
 ### Creating React Components with JSX (2)
 
 - 새로운 컴포넌트 생성
-  `src/Movie.js`
-  `src/Movie.css`
+  `src song$ touch Movie.js`
+  `src song$ touch Movie.css`
 
 
 - ```react
   // Movie.js
 
-  // import React, { Component } from 'react';
-     import './Movie.css';
+  import React, { Component } from 'react';
+  import './Movie.css';
 
-     class Movie extends Component {
-  //   render() {
-  //     return (
+  class Movie extends Component {
+  	render() {
+  		return (
        	  <div>
          		 <MoviePoster />
          	 	 <h1>CAPTAIN FANTASTIC</h1>
          	  </div>
-  //     );
-  //   }
-  // }
+  		);
+  	}
+  }
        
-     class MoviePoster extends Component {
-       render() {
-         return (
-            <img src="https://is2-ssl.mzstatic.com/image/thumb/Video22/v4/71/09/3b/71093bba-626b-e900-0c05-f0a97b2070f2/source/1200x630bb.jpg" />
-         );
-       }
-     }
+  class MoviePoster extends Component {
+  	render() {
+  		return (
+  			<img src="https://is2-ssl.mzstatic.com/image/thumb/Video22/v4/71/09/3b/71093bba-626b-e900-0c05-f0a97b2070f2/source/1200x630bb.jpg" />
+  		);
+  	}
+  }
 
-     export default Movie;
+  export default Movie;
   ```
 
   ```react
   // App.js
 
-  // import React, { Component } from 'react';
-  // import './App.css';
-     import Movie from './Movie';
+  import React, { Component } from 'react';
+  import './App.css';
+  import Movie from './Movie';
 
-  // class App extends Component {
-  //   render() {	
-  //     return (
-  //  	 <div className="App">
-        		<Movie />
-        		<Movie />
-        		<Movie />
-        		<Movie />
-  //       </div>
-  //     );
-  //   }
-  // }
+  class App extends Component {
+  	render() {	
+  		return (
+  			<div className="App">
+  				<Movie />
+        			<Movie />
+        			<Movie />
+        			<Movie />
+  			</div>
+  		);
+  	}
+  }
 
-  // export default App;
+  export default App;
   ```
 
   ```react
@@ -201,8 +201,8 @@
   same img
   About Time
 
-
   // Console
+
   ▶︎ {title: "Captain Fantastic"}
   ▶︎ {title: "Hector and the Search for Happiness"}
   ▶︎ {title: "The Secret Life of Walter Mitty"}
@@ -210,6 +210,7 @@
   ```
 
 - 이것이 React다. 부모 컴포넌트가 자식 컴포넌트에게 정보를 주는 것이다.
+
 
 <br>
 
@@ -222,28 +223,28 @@
   // import './App.css';
   // import Movie from './Movie';
 
-  const movie = [
-    "Captain Fantastic",
-    "Hector and the Search for Happiness",
-    "The Secret Life of Walter Mitty",
-    "About Time"
+  const movies = [
+  	"Captain Fantastic",
+  	"Hector and the Search for Happiness",
+      "The Secret Life of Walter Mitty",
+      "About Time"
   ]
 
   const movieImages = [
-    "https://is2-ssl.mzstatic.com/image/thumb/Video22/v4/71/09/3b/71093bba-626b-e900-0c05-f0a97b2070f2/source/1200x630bb.jpg",
-    "http://www.video2k.is/data/yify/medium_cover/51486.jpg",
-    "https://is1-ssl.mzstatic.com/image/thumb/Music6/v4/a1/66/b8/a166b81c-0f6b-c751-6472-32bac5cf7ff0/886444332415.jpg/1200x630bb.jpg",
-    "http://www.mjyoung.net/imgsrc/About04.jpg"
+      "https://is2-ssl.mzstatic.com/image/thumb/Video22/v4/71/09/3b/71093bba-626b-e900-0c05-f0a97b2070f2/source/1200x630bb.jpg",
+      "http://www.video2k.is/data/yify/medium_cover/51486.jpg",
+      "https://is1-ssl.mzstatic.com/image/thumb/Music6/v4/a1/66/b8/a166b81c-0f6b-c751-6472-32bac5cf7ff0/886444332415.jpg/1200x630bb.jpg",
+      "http://www.mjyoung.net/imgsrc/About04.jpg"
   ]
 
   // class App extends Component {
   //   render() {	
   //     return (
   //  	 <div className="App">
-        		<Movie title={movies[0]} poster={movieImages[0]} />
-        		<Movie title={movies[1]} poster={movieImages[1]} />
-        		<Movie title={movies[2]} poster={movieImages[2]} />
-        		<Movie title={movies[3]} poster={movieImages[3]} />
+          		<Movie title={movies[0]} poster={movieImages[0]} />
+          		<Movie title={movies[1]} poster={movieImages[1]} />
+          		<Movie title={movies[2]} poster={movieImages[2]} />
+          		<Movie title={movies[3]} poster={movieImages[3]} />
   //       </div>
   //     );
   //   }
@@ -253,60 +254,61 @@
   ```
 
   ```react
-  // Movie.js
+    // Movie.js
 
-  // import React, { Component } from 'react';
-  // import './Movie.css';
+    // import React, { Component } from 'react';
+    // import './Movie.css';
 
-  // class Movie extends Component {
-  //   render() {
-  	   console.log(this.props);
-  //     return (
-  //     	  <div>
-       		 <MoviePoster poster={this.props.poster} />
-       	 	 <h1>{this.props.title}</h1>
-  //     	  </div>
-  //     );
-  //   }
-  // }
-       
-  // class MoviePoster extends Component {
-  //   render() {
-  	   console.log(this.props);
-  //     return (
-  //        <img src="https://is2-ssl.mzstatic.com/image/thumb/Video22/v4/71/09/3b/71093bba-626b-e900-0c05-f0a97b2070f2/source/1200x630bb.jpg" />
-  //     );
-  //   }
-  // }
+    // class Movie extends Component {
+    //   render() {
+    	   console.log(this.props);
+    //     return (
+    //     	  <div>
+         		 <MoviePoster poster={this.props.poster} />
+         	 	 <h1>{this.props.title}</h1>
+    //     	  </div>
+    //     );
+    //   }
+    // }
+         
+    // class MoviePoster extends Component {
+    //   render() {
+    	   console.log(this.props);
+    //     return (
+  	        <img src={this.props.poster} />
+    //     );
+    //   }
+    // }
 
-  // export default Movie;
+    // export default Movie;
   ```
 
   ```react
-  // http://localhost:3000/
-  different img
-  Captain Fantastic
+    // http://localhost:3000/
+    different img
+    Captain Fantastic
 
-  different img
-  Hector and the Search for Happiness
+    different img
+    Hector and the Search for Happiness
 
-  different img
-  The Secret Life of Walter Mitty
+    different img
+    The Secret Life of Walter Mitty
 
-  different img
-  About Time
+    different img
+    About Time
 
 
-  // Console
-  ▶︎ {title: "Captain Fantastic", poster: "sth"}
-  ▶︎ {poster: "sth"}
-  ▶︎ {title: "Hector and the Search for Happiness", poster: "sth"}
-  ▶︎ {poster: "sth"}
-  ▶︎ {title: "The Secret Life of Walter Mitty", poster: "sth"}
-  ▶︎ {poster: "sth"}
-  ▶︎ {title: "About Time", poster: "sth"}
-  ▶︎ {poster: "sth"}
+    // Console
+    ▶︎ {title: "Captain Fantastic", poster: "sth"}
+    ▶︎ {poster: "sth"}
+    ▶︎ {title: "Hector and the Search for Happiness", poster: "sth"}
+    ▶︎ {poster: "sth"}
+    ▶︎ {title: "The Secret Life of Walter Mitty", poster: "sth"}
+    ▶︎ {poster: "sth"}
+    ▶︎ {title: "About Time", poster: "sth"}
+    ▶︎ {poster: "sth"}
   ```
+
 
 - 여기까지가 **props**와 **컴포넌트**였다.
 
@@ -373,23 +375,23 @@
   different img
   About Time
 
-
   // Console
   ▶︎Warning: Each child in an array or iterator should have a unique "key" prop.
   ```
 
-- React는 엘리먼트가 많을 경우 **key**를 줘야 한다.
-
   ```react
   // before
-  {movies.map(movie => {
-       return <Movie title={movie.title} poster={movie.poster} />
-       
-       
-  // after (,index / key={index})
-  {movies.map((movie, index) => {
-       return <Movie title={movie.title} poster={movie.poster} key={index} />
+    {movies.map(movie => {
+         return <Movie title={movie.title} poster={movie.poster} />
+         
+         
+    // after (,index / key={index})
+    {movies.map((movie, index) => {
+         return <Movie title={movie.title} poster={movie.poster} key={index} />
   ```
+
+- React는 엘리먼트가 많을 경우 **key**를 줘야 한다.
+
 
 - error가 해결된다.
 
@@ -494,7 +496,7 @@
   //   render() {
   //	   console.log(this.props);
   //     return (
-  //        <img src="https://is2-ssl.mzstatic.com/image/thumb/Video22/v4/71/09/3b/71093bba-626b-e900-0c05-f0a97b2070f2/source/1200x630bb.jpg" />
+  //        <img src={this.props.poster} />
   //     );
   //   }
   // }
@@ -584,7 +586,7 @@
   //   render() {	
   //     return (
   //  	 <div className="App">
-  // 		 {this.state.greeting}
+   		 {this.state.greeting}
   // 		 {movies.map((movie, index) => {
   //   	 	return <Movie title={movie.title} poster={movie.poster} key={index} />
   // 		 })}
@@ -780,33 +782,42 @@
 
   ```react
   // http://localhost:3000/
+
   Loading
 
-
   // 2초 후 나타남
-  img
-  Captain Fantastic
 
-  img
-  Hector and the Search for Happiness
+    img
 
-  img
-  The Secret Life of Walter Mitty
+    Captain Fantastic
 
-  img
-  About Time
+    img
 
-  img
-  Wild
+    Hector and the Search for Happiness
 
-  // 이것이 Loding States
+    img
+
+    The Secret Life of Walter Mitty
+
+    img
+
+    About Time
+
+    img
+
+    Wild
+
+    // 이것이 Loding States
+
   ```
 
-  <br>
+
+<br>
 
 ### Smart vs Dumb Components
 
 - 모든 컴포넌트에 state가 있는 것은 아니다(stateless functional component). 
+
 
 - state의 유무에 따라 **smart**와 **dumb**으로 구분한다.
 
@@ -814,7 +825,7 @@
 
 - 아래 두 컴포넌트는 동일하다.
 
-- ```react
+  ```react
   class MoviePoster extends Component {
     
   	static propTypes = {
@@ -847,6 +858,7 @@
      import React from 'react';
   // import propTypes from 'prop-types';
   // import './Movie.css';
+  ```
 
 
   function Movie({title, poster}) {
@@ -857,7 +869,7 @@
         	</div>
       )
   }
-       
+​       
   function MoviePoster({poster}) {
   	return (
       	<img src={poster} alt="Movie Poster" />
@@ -992,6 +1004,7 @@
   ```react
   // http://localhost:3000/
   Loading
+  ```
 
 
   // Console
@@ -1213,6 +1226,7 @@
   // import React from 'react';
   // import propTypes from 'prop-types';
   // import './Movie.css';
+  ```
 
 
   function Movie({title, poster, genres, synopsis}) {
@@ -1233,7 +1247,7 @@
         	</div>
       )
   }
-       
+​       
   function MoviePoster({poster, alt}) {
   	return (
       	<img src={poster} alt={alt} title={alt} className="Movie__Poster" />

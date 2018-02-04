@@ -629,7 +629,48 @@ VELOPERT 김민준
 
 ### 작업환경 설정하기
 
+- Git: 버전관리 시스템.
+- Node.js: 자바스크립트를 서버환경에서 실행하는 자바스크립트 런타임. 자바스크립트를 브라우저에서만 사용하는 게 아니라, 서버사이드에서도 사용할 수 있게 해준다.
+- npm: Node.js로 만들어진 모듈들을 설치 및 버전관리 할 수 있는 프로그램.
+- MongoDB: 인기있는 NoSQL 데이터베이스 중 하나.
+
+<br>
+
+- 작업환경 확인
+  - `git —version`
+  - `node -v`
+
+<br>
+
+### React Project만들기 (npm, Webpack)
+
+- webpack: 브라우저 위에서 import(require)를 할 수 있게 해주고, 자바스크립트 파일들을 하나로 합쳐준다.
+- webpack-dev-server: 별도의 서버를 구축하지 않고도 static 파일을 다루는 웹서버를 열 수 있으며 hot-loader를 통하여 코드가 수정될 때마다 자동으로 리로드 되게 할 수 있다.
+- `sudo npm install -g webpack-dev-server`
+- `npm init`: Node 프로젝트를 시작하는 명령어.
+
+<br>
+
+#### 프로젝트 생성
+
+1. `mkdir react-fundamentals`
+2. `cd react-fundamentals`
+3. `npm init`
+4. 엔터 계속 눌러주면 package.json 파일이 생성
+
+- package.json은 프로그램의 정보를 담고 있다.
+
+#### React 설치
+
+- `npm install —save react react-dom`: json 파일에 react, react-dom 내용 추가
+
+#### 개발 의존 모듈 설치
+
+- `npm install --save-dev babel-core babel-loader babel-preset-react babel-preset-es2015 webpack webpack-dev-server`
+- `npm install —save-dev react-hot-loader webpack webpack-dev-server`
 - ​
+
+
 
 
 
