@@ -787,28 +787,22 @@
 
   // 2초 후 나타남
 
-    img
+  img
+  Captain Fantastic
 
-    Captain Fantastic
+  img
+  Hector and the Search for Happiness
 
-    img
+  img
+  The Secret Life of Walter Mitty
 
-    Hector and the Search for Happiness
+  img
+  About Time
 
-    img
+  img
+  Wild
 
-    The Secret Life of Walter Mitty
-
-    img
-
-    About Time
-
-    img
-
-    Wild
-
-    // 이것이 Loding States
-
+  // 이것이 Loding States
   ```
 
 
@@ -825,28 +819,37 @@
 
 - 아래 두 컴포넌트는 동일하다.
 
-  ```react
+- ```react
+  // Movie.js
+
+  ...
+
   class MoviePoster extends Component {
-    
+      
   	static propTypes = {
-      	poster: PropTypes.string.isRequired
-    	}
+  		poster: PropTypes.string.isRequired
+  	}
 
   	render() {
-    		return (
-          <img src={this.props.poster} alt="Movie Poster" />
-          )
+  		return (
+  			<img src={this.props.poster} alt="Movie Poster" />
+  		)
   	}
   }
   ```
 
-  ```react
+- ```react
+  // Movie.js
+
+  ...
+
   function MoviePoster({poster}) {
   	return (
   		<img src={poster} alt="Movie Poster" />
-      )
+  	)
   }
   ```
+
 
 - 어떤 컴포넌트는 그냥 return을 하기 위해서 존재한다.
 
@@ -858,37 +861,36 @@
      import React from 'react';
   // import propTypes from 'prop-types';
   // import './Movie.css';
-  ```
-
 
   function Movie({title, poster}) {
-  	return (
-      	<div>
-        		<MoviePoster poster={poster} />
-          	<h1>{title}</h1>
-        	</div>
-      )
+    return (
+      <div>
+        <MoviePoster poster={poster} />
+        <h1>{title}</h1>
+      </div>
+    )
   }
-​       
-  function MoviePoster({poster}) {
-  	return (
-      	<img src={poster} alt="Movie Poster" />
-      )
+
+  // function MoviePoster({poster}) {
+  //    return(
+  //      <img src={poster} alt='Movie Poster' />
+  //    )
+  //}
+
+  MoviePoster.propTypes = {
+    title: propTypes.string.isRequired,
+    poster: propTypes.string.isRequired
   }
 
   MoviePoster.propTypes = {
-  	title: propTypes.string.isRequired,
-    	poster: propTypes.string.isRequired
-  }
-
-  MoviePoster.propTypes = {
-  	poster: propTypes.string.isRequired
+    poster:propTypes.string.isRequired
   }
 
   // export default Movie;
   ```
 
 - 똑똑한 컴포넌트는 state가 있고, 멍청한 컴포넌트는 state이 없다.
+
 
 <br>
 
@@ -916,11 +918,11 @@
 
   // class App extends Component {
 
-  state = {}
+  	state = {}
 
-  componentDidMount() {
-  	fetch('https://yts.am/api/v2/list_movies.json?sort_by=rating')
-  }
+  	componentDidMount() {
+  		fetch('https://yts.am/api/v2/list_movies.json?sort_by=rating')
+  	}
 
   // _renderMovies = () => {
   //    const movies = this.state.movies.map((movie, index) => {
@@ -941,10 +943,12 @@
   // export default App;
   ```
 
-  ```react
+- ```react
   // http://localhost:3000/
+
   Loading
   ```
+
 
 
 - console > Network에서 `bundle.js` 확인
