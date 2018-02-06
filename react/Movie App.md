@@ -28,7 +28,7 @@
   export default App;
   ```
 
-  ```react
+- ```react
   // App.css
 
   .App {
@@ -81,11 +81,11 @@
   export default Movie;
   ```
 
-  ```react
+- ```react
   // App.js
 
-  import React, { Component } from 'react';
-  import './App.css';
+  // import React, { Component } from 'react';
+  // import './App.css';
   import Movie from './Movie';
 
   class App extends Component {
@@ -101,21 +101,21 @@
   	}
   }
 
-  export default App;
+  // export default App;
   ```
 
-  ```react
+- ```react
   // http://localhost:3000/
-  img
+  same img
   CAPTAIN FANTASTIC
 
-  img
+  same img
   CAPTAIN FANTASTIC
 
-  img
+  same img
   CAPTAIN FANTASTIC
 
-  img
+  same img
   CAPTAIN FANTASTIC
   ```
 
@@ -253,66 +253,66 @@
   // export default App;
   ```
 
-  ```react
-    // Movie.js
+- ```react
+  // Movie.js
 
-    // import React, { Component } from 'react';
-    // import './Movie.css';
+  // import React, { Component } from 'react';
+  // import './Movie.css';
 
-    // class Movie extends Component {
-    //   render() {
+  // class Movie extends Component {
+  //   render() {
     	   console.log(this.props);
-    //     return (
-    //     	  <div>
+  //     return (
+  //     	  <div>
          		 <MoviePoster poster={this.props.poster} />
          	 	 <h1>{this.props.title}</h1>
-    //     	  </div>
-    //     );
-    //   }
-    // }
+  //     	  </div>
+  //     );
+  //   }
+  // }
          
-    // class MoviePoster extends Component {
-    //   render() {
+  // class MoviePoster extends Component {
+  //   render() {
     	   console.log(this.props);
-    //     return (
+  //     return (
   	        <img src={this.props.poster} />
-    //     );
-    //   }
-    // }
+  //     );
+  //   }
+  // }
 
-    // export default Movie;
+  // export default Movie;
   ```
 
-  ```react
-    // http://localhost:3000/
-    different img
-    Captain Fantastic
+- ```react
+  // http://localhost:3000/
+  different img
+  Captain Fantastic
 
-    different img
-    Hector and the Search for Happiness
+  different img
+  Hector and the Search for Happiness
 
-    different img
-    The Secret Life of Walter Mitty
+  different img
+  The Secret Life of Walter Mitty
 
-    different img
-    About Time
-
-
+  different img
+  About Time
+    
+    
     // Console
-    ▶︎ {title: "Captain Fantastic", poster: "sth"}
-    ▶︎ {poster: "sth"}
-    ▶︎ {title: "Hector and the Search for Happiness", poster: "sth"}
-    ▶︎ {poster: "sth"}
-    ▶︎ {title: "The Secret Life of Walter Mitty", poster: "sth"}
-    ▶︎ {poster: "sth"}
-    ▶︎ {title: "About Time", poster: "sth"}
-    ▶︎ {poster: "sth"}
+  ▶︎ {title: "Captain Fantastic", poster: "sth"}
+  ▶︎ {poster: "sth"}
+  ▶︎ {title: "Hector and the Search for Happiness", poster: "sth"}
+  ▶︎ {poster: "sth"}
+  ▶︎ {title: "The Secret Life of Walter Mitty", poster: "sth"}
+  ▶︎ {poster: "sth"}
+  ▶︎ {title: "About Time", poster: "sth"}
+  ▶︎ {poster: "sth"}
   ```
-
 
 - 여기까지가 **props**와 **컴포넌트**였다.
 
 - 여기까지의 코드는 복붙이기 때문에 비효율적이다.
+
 
 <br>
 
@@ -328,31 +328,32 @@
   // import Movie from './Movie';
 
   const movies = [
-    {
-      title: "Captain Fantastic",
-      poster: "https://is2-ssl.mzstatic.com/image/thumb/Video22/v4/71/09/3b/71093bba-626b-e900-0c05-f0a97b2070f2/source/1200x630bb.jpg"
-    },
-    {
-      title: "Hector and the Search for Happiness",
-      poster: "http://www.video2k.is/data/yify/medium_cover/51486.jpg"
-    },
-    {
-      title: "The Secret Life of Walter Mitty",
-      poster: "https://is1-ssl.mzstatic.com/image/thumb/Music6/v4/a1/66/b8/a166b81c-0f6b-c751-6472-32bac5cf7ff0/886444332415.jpg/1200x630bb.jpg"
-    },
-    {
-      title: "About Time",
-      poster: "http://www.mjyoung.net/imgsrc/About04.jpg"
-    }
-  ]
+      {
+        title: "Captain Fantastic",
+        poster: "https://is2-ssl.mzstatic.com/image/thumb/Video22/v4/71/09/3b/71093bba-626b-e900-0c05-f0a97b2070f2/source/1200x630bb.jpg"
+      },
+      {
+        title: "Hector and the Search for Happiness",
+        poster: "http://www.video2k.is/data/yify/medium_cover/51486.jpg"
+      },
+      {
+        title: "The Secret Life of Walter Mitty",
+        poster: "https://is1-ssl.mzstatic.com/image/thumb/Music6/v4/a1/66/b8/a166b81c-0f6b-c751-6472-32bac5cf7ff0/886444332415.jpg/1200x630bb.jpg"
+      },
+      {
+        title: "About Time",
+        poster: "http://www.mjyoung.net/imgsrc/About04.jpg"
+      }
+    ]
+
 
   // class App extends Component {
   //   render() {	
   //     return (
   //  	 <div className="App">
-     {movies.map(movie => {
-       return <Movie title={movie.title} poster={movie.poster} />
-     })}
+       {movies.map(movie => {
+         return <Movie title={movie.title} poster={movie.poster} />
+       })}
   //       </div>
   //     );
   //   }
@@ -361,7 +362,7 @@
   // export default App;
   ```
 
-  ```react
+- ```react
   // http://localhost:3000/
   different img
   Captain Fantastic
@@ -379,16 +380,17 @@
   ▶︎Warning: Each child in an array or iterator should have a unique "key" prop.
   ```
 
-  ```react
+- ```react
   // before
-    {movies.map(movie => {
-         return <Movie title={movie.title} poster={movie.poster} />
-         
-         
-    // after (,index / key={index})
-    {movies.map((movie, index) => {
-         return <Movie title={movie.title} poster={movie.poster} key={index} />
+  {movies.map(movie => {
+           return <Movie title={movie.title} poster={movie.poster} />
+           
+           
+  // after (,index / key={index})
+  {movies.map((movie, index) => {
+           return <Movie title={movie.title} poster={movie.poster} key={index} />
   ```
+
 
 - React는 엘리먼트가 많을 경우 **key**를 줘야 한다.
 
@@ -408,7 +410,7 @@
   ]}
   ```
 
-  ```react
+- ```react
   {movies.map(movie => {
     return <Movie title={movie.title} poster={movie.poster} />
   })}
@@ -489,7 +491,6 @@
   // class MoviePoster extends Component {
 
      static propTypes = {
-       title: propTypes.string.isRequired,
        poster: propTypes.string.isRequired
      }
 
@@ -598,10 +599,12 @@
   // export default App;
   ```
 
-  ```react
+- ```react
   // http://localhost:3000/
-  Wassup bro?	
-    // 2초 후에 바뀐다
+  Wassup bro?
+
+
+  // 2초 후에 바뀐다
   Wassup again!
     
   img
@@ -697,6 +700,7 @@
 
   img
   About Time
+
 
   // 2초 후에 표시
   img
@@ -1005,15 +1009,16 @@
   // export default App;
   ```
 
-  ```react
+- ```react
   // http://localhost:3000/
   Loading
-  ```
 
 
   // Console
+
   ▶︎Response {type: "cors", url: "https://yts.am/api/v2/list_movies.json?sort_by=rating", redirected: false, status: 200, ok: true, …}
   ```
+
 
 <br>
 
@@ -1029,10 +1034,10 @@
   // state = {}
 
   componentDidMount() {
-  	fetch('https://yts.am/api/v2/list_movies.json?sort_by=rating')
-  	.then(response => response.json())
-    	.then(json => console.log(json))
-    	.catch(err => console.log(err))
+    	fetch('https://yts.am/api/v2/list_movies.json?sort_by=rating')
+    	.then(response => response.json())
+      	.then(json => console.log(json))
+      	.catch(err => console.log(err))
   }
 
   // _renderMovies = () => {
@@ -1054,7 +1059,7 @@
   // export default App;
   ```
 
-  ```react
+- ```react
   // http://localhost:3000/
   Loading
 
@@ -1062,18 +1067,19 @@
   // Console
   ▼{status: "ok", status_message: "Query was successful", data: {…}, @meta: {…}}
   	▶︎@meta: {server_time: 1517480942, server_timezone: "EST5EDT", api_version: 2, execution_time: "0 ms"}
-      ▼data:
-  		limit: 20
-  		movie_count: 6685
-  	  ▼movies: Array(20)
-  		▶︎0: {id: 3709, url: …}
-  		▶︎1: {id: 3304, url: …}
-  		▶︎2: {id: 3175, url: …}
-  		…
-          ▶︎19: {id: 3490, url: …}
-  		 length: 20
-  		…
+        ▼data:
+    		limit: 20
+    		movie_count: 6685
+    	  ▼movies: Array(20)
+    		▶︎0: {id: 3709, url: …}
+    		▶︎1: {id: 3304, url: …}
+    		▶︎2: {id: 3175, url: …}
+    		…
+            ▶︎19: {id: 3490, url: …}
+    		 length: 20
+    		…
   ```
+
 
 - 못생긴 데이터를 `response`로 체크하고, `json`으로 변환하고, `console`로 보는 것이다.
 
@@ -1143,7 +1149,7 @@
   // export default App;
   ```
 
-  ```react
+- ```react
   // http://localhost:3000/
 
   img (The Shawshank Redemption)
@@ -1166,8 +1172,6 @@
 <br>
 
 ### Updating Component
-
-- ​
 
 - ```react
   // App.js
@@ -1198,6 +1202,7 @@
      return movies
   }
 
+
   _getMovies = async () => {
   	const movies = await this._callApi()
       this.setState({
@@ -1205,12 +1210,14 @@
       })
   }
 
+
   _callApi = () => {
      return fetch('https://yts.am/api/v2/list_movies.json?sort_by=rating')
      .then(response => response.json())
      .then(json => json.data.movies)
      .catch(err => console.log(err))
   }
+
 
   //	render() {	
   //		return (
@@ -1224,66 +1231,66 @@
   // export default App;
   ```
 
-  ```react
+- ```react
   // Movie.js
 
   // import React from 'react';
   // import propTypes from 'prop-types';
   // import './Movie.css';
-  ```
-
 
   function Movie({title, poster, genres, synopsis}) {
   	return (
-      	<div className="Movie">
-          	<div className="Movie__Columns">
-          		<MoviePoster poster={poster} alt={title} />
-          	</div>
-          	<div className="Movie__Columns">
-  	        	<h1>{title}</h1>
-                	<div className="Movie__Genres">
-                		{genres.map((genre, index) => <MovieGenre genre={genre} key={index} />)}
-                	</div>
-                	<p className="Movie__Synopsis">
-                		{synopsis}
-                	</p>
-          	</div>
-        	</div>
-      )
+  		<div className="Movie">
+  			<div className="Movie__Columns">
+  				<MoviePoster poster={poster} alt={title} />
+        		</div>
+        		<div className="Movie__Columns">
+  				<h1>{title}</h1>
+  			<div className="Movie__Genres">
+  				{genres.map((genre, index) => <MovieGenre genre={genre} key={index} />)}
+  			</div>
+  			<p className="Movie__Synopsis">
+  				{synopsis}
+  			</p>
+        		</div>
+      	</div>
+  	)
   }
-​       
+        
+
   function MoviePoster({poster, alt}) {
   	return (
-      	<img src={poster} alt={alt} title={alt} className="Movie__Poster" />
-      )
+  		<img src={poster} alt={alt} title={alt} className="Movie__Poster" />
+  	)
   }
+
 
   function MovieGenre({genre}) {
-    return (
-    	<span className="Movie__Genre">{genre} </span>
-    )
+  	return (
+  		<span className="Movie__Genre">{genre} </span>
+  	)
   }
 
   MoviePoster.propTypes = {
-  	title: propTypes.string.isRequired,
-    	poster: propTypes.string.isRequired,
-    	genres: propTypes.string.isRequired,
-    	synopsis: propTypes.string.isRequired
-  }
-
-  MoviePoster.propTypes = {
+    	title: propTypes.string.isRequired,
   	poster: propTypes.string.isRequired,
-    	alt: propTypes.string.isRequired
+  	genres: propTypes.string.isRequired,
+  	synopsis: propTypes.string.isRequired
+  }
+
+  MoviePoster.propTypes = {
+    	poster: propTypes.string.isRequired,
+  	alt: propTypes.string.isRequired
   }
 
   MovieGenre.prototypes = {
-    	genre: propTypes.string.isRequired
+  	genre: propTypes.string.isRequired
   }
 
   // export default Movie;
   ```
 
-  ```react
+- ```react
   // http://localhost:3000/
 
   img
@@ -1297,6 +1304,7 @@
 
   // 마우스오버하면 제목 hover
   ```
+
 
 - props 추가
 
