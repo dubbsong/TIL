@@ -34,6 +34,6 @@ const reverseWord = string => string.split(' ').reverse().join(' ');
 
 ```javascript
 reverseWord('Wassup bro?');  // bro? Wassup
-reverseWord('Codewars');  // Codewars
+reverseWord('codeWars');  // CodeWars
 ```
 
