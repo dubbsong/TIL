@@ -1,4 +1,4 @@
-## squareSum.js
+## sentenceSmash.js
 
 ### ***problem***
 

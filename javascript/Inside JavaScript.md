@@ -1137,8 +1137,164 @@ console.log(add.status);	// 'OK'
   - 함수의 인자로 전달 가능
   - 함수의 리턴값으로 리턴 가능
   - 동적으로 프로퍼티를 생성 및 할당 가능
-- 81p
+- 이와 같은 특징이 있으므로 자바스크립트에서는 함수를 **일급(First Class) 객체**라고 부른다.
+- 앞에서 나열한 기능이 모두 가능한 객체를 일급 객체라고 부른다.
+- 자바스크립트 함수가 가지는 이러한 일급 객체의 특성으로 함수형 프로그래밍이 가능하다.
+- 자바스크립트에서 함수를 제대로 이해하려면 함수가 일급 객체이며 이는 곧 함수가 일반 객체처럼 값(value)으로 취급된다는 것을 이해해야 한다. 따라서 함수를 변수나 객체, 배열 등에 값으로도 저장할 수 있으며, 다른 함수의 인자로 전달한다거나 함수의 리턴값으로도 사용 가능하다는 것을 알 수 있다.
 
+<br>
+
+###### 1))) 변수나 프로퍼티의 값으로 할당
+
+- 함수는 숫자나 문자열처럼 변수나 프로퍼티의 값으로 할당될 수 있다.
+
+```javascript
+// 변수에 함수 할당
+var foo = 100;
+var bar = function() { return 100; };
+console.log(bar()); 	// 100
+
+// 프로퍼티에 함수 할당
+var obj = {};
+obj.baz = function() { return 200; };
+console.log(obj.baz()); 	// 200
+```
+
+<br>
+
+###### 2))) 함수 인자로 전달
+
+- 함수는 다른 함수의 인자로도 전달이 가능하다.
+- foo()는 함수 표현식 방법으로 생성한 함수로서, 인자로 받은 func 함수를 내부에서 함수 호출 연산자()를 붙여 호출하는 기능을 한다.
+
+```javascript
+// 함수 표현식으로 foo() 함수 생성
+var foo = function(func) {
+  func();	// 인자로 받은 func() 함수 호출
+}
+
+// foo() 함수 실행
+foo(function() {
+  console.log('Function can be used as the argument.');
+}); 	// Function can be used as the argument.
+```
+
+- foo() 함수를 호출할 때, 함수 리터럴 방식으로 생성한 **익명 함수**를 func 인자로 넘겼다. 따라서 foo() 함수 내부에서는 func 매개변수로 인자에 넘겨진 함수를 호출할 수 있다. 예제의 출력결과를 보면 알 수 있듯이 인자로 넘긴 익명 함수가 foo() 함수 내부에서 제대로 호출된 것을 알 수 있다.
+
+<br>
+
+###### 3))) 리턴값으로 활용
+
+- 함수는 다른 함수의 리턴값으로도 활용할 수 있다.
+- foo() 함수는 console.log()를 이용해 출력하는 간단한 익명 함수를 리턴하는 역할을 한다. 이것이 가능한 이유 또한 함수 자체가 값으로 취급되기 때문이다.
+
+```javascript
+// 함수를 리턴하는 foo() 함수 정의
+var foo = function() {
+  return function() {
+    console.log('this function is the return value.')
+  };
+};
+
+var bar = foo();
+bar();	// this function is the return value.
+```
+
+- foo() 함수가 호출되면, 리턴값으로 전달되는 함수가 bar 변수에 저장된다.
+- () 함수 호출 연산자를 이용해 bar()로 리턴된 함수를 실행하는 것이 가능하다.
+
+<br>
+
+#### 3) 함수 객체의 기본 프로퍼티
+
+- 자바스크립트에서는 함수 역시 객체다(굉장히 중요한 개념이므로 자꾸 반복하는 것이니, 꼭 숙지하기 바란다).
+- 이것은 함수 역시 일반적인 객체의 기능에 추가로 호출됐을 때 정의된 코드를 실행하는 기능을 가지고 있다는 것이다.
+- 일반 객체와는 다르게 추가로 **함수 객체만의 표준 프로퍼티**가 정의되어 있다.
+
+```javascript
+// add() 함수 객체 프로퍼티를 출력하는 코드
+function add(x, y) {
+  return x + y;
+}
+
+console.dir(add);
+```
+
+- **name 프로퍼티**는 함수의 이름을 나타낸다.
+- **caller 프로퍼티**는 자신을 호출한 함수를 나타낸다.
+- **arguments 객체**는 함수를 호출할 때 호출된 함수의 내부로 인잡값과 함께 전달된다.
+- 자바스크립트 객체는 자신의 프로토타입을 가리키는 **[[Prototype]]라는 내부 프로퍼티**를 가진다.
+- 즉, [[Prototype]]과 \__proto__는 같은 개념이라고 생각하면 된다.
+- ECMA 표준에서는 함수 객체의 부모 역할을 하는 포로토타입 객체를 **Function.prototype 객체**라고 명명하고 있으며, 이것 역시 **함수 객체**라고 정의하고 있다.
+
+<br>
+
+### 참고
+
+- **Function.prototype 객체**는 **모든 함수들의 부모 역할**을 하는 프로토타입 객체다. 때문에 모든 함수는 Function.prototype 객체가 있는 프로퍼티나 메소드를 마치 자신의 것처럼 상속받아 그대로 사용할 수 있다.
+
+<br>
+
+###### 1))) length 프로퍼티
+
+- 함수 객체의 **length 프로퍼티**는 모든 함수가 가져야 하는 표준 프로퍼티로서, 함수가 정상적으로 실행될 때 기대되는 인자의 개수를 나타낸다.
+
+```javascript
+function func0() {
+  
+}
+
+function func1(x) {
+  return x;
+}
+
+function func2(x, y) {
+  return x + y;
+}
+
+function func3(x, y, z) {
+  return x + y + z;
+}
+console.log('func0.length - ' + func0.length);	// func0.length - 0
+console.log('func1.length - ' + func1.length);	// func1.length - 1
+console.log('func2.length - ' + func2.length);	// func2.length - 2
+console.log('func3.length - ' + func3.length);	// func3.length - 3
+```
+
+<br>
+
+###### 2))) prototype 프로퍼티
+
+- 모든 함수는 객체로서 **prototype 프로퍼티**를 가지고 있다.
+- 주의할 것은 함수 객체의 **prototype 프로퍼티**는 앞서 설명한 모든 객체의 부모를 나타내는 *내부 프로퍼티**인 **[[Prototype]]**과 혼동하지 말아야 한다는 것이다.
+- prototype 프로퍼티는 함수가 생성될 때 만들어지며, 단지 **constructor 프로퍼티** 하나만 있는 객체를 가리킨다.
+- prototype 프로퍼티가 가리키는 프로토타입 객체의 유일한 constructor 프로퍼티는 자신과 연결된 함수를 가리킨다. 즉, 자바스크립트에서는 함수를 생성할 때, 함수 자신과 연결된 프로토타입 객체를 동시에 생성하며 이 둘은 각각 prototype과 constructor라는 프로퍼티로 서로를 참조하게 된다.
+
+```javascript
+// MyFunction() 함수 정의
+function myFunction() {
+  return true;
+}
+
+console.dir(myFunction.prototype);
+console.dir(myFunction.prototype.constructor);
+```
+
+- myFunction()이라는 함수를 생성했다. 함수가 생성됨과 동시에 myFunction() 함수의 prototype 프로퍼티에는 이 함수와 연결된 프로토타입 객체가 생성된다.
+- myFunction.prototype은 myFunction() 함수의 프로토타입 객체를 의미한다.
+- **함수 객체**와 **프로토타입 객체**는 서로 밀접하게 연결돼 있다. 이러한 개념은 이후 프로토타입과 프로토타입 체이닝을 이해하는 기본 지식인 만큼 잘 숙지해야 한다.
+
+<br>
+
+#### 참고: prototype 프로퍼티와 [[Prototype]] 프로퍼티
+
+- 두 프로퍼티 모두 **프로토타입 객체**를 가리킨다는 점에서는 공통점이 있지만, 관점에 차이가 있다. 모든 객체에 있는 내부 프로퍼티인 **[[Prototype]]**은 객체 입장에서 자신의 부모 역할을 하는 프로토타입 객체를 가리키는 반면에, 함수 객체가 가지는 **prototype 프로퍼티**는 이 함수가 생성자로 사용될 때 이 함수를 통해 생성된 객체의 부모 역할을 하는 프로토타입 객체를 가리킨다.
+
+<br>
+
+#### 3) 함수의 다양한 형태
+
+- 90p
 
 
 
