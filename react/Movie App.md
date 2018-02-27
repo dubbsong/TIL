@@ -19,7 +19,7 @@
     render() {	
       return (
   	  <div className="App">
-        
+  
         </div>
       );
     }
@@ -32,7 +32,7 @@
   // App.css
 
   .App {
-    
+  
   }
   ```
 
@@ -69,7 +69,7 @@
   		);
   	}
   }
-       
+  
   class MoviePoster extends Component {
   	render() {
   		return (
@@ -232,7 +232,7 @@
 
   const movieImages = [
       "https://is2-ssl.mzstatic.com/image/thumb/Video22/v4/71/09/3b/71093bba-626b-e900-0c05-f0a97b2070f2/source/1200x630bb.jpg",
-      "http://www.video2k.is/data/yify/medium_cover/51486.jpg",
+      "https://1.bp.blogspot.com/-sZeObPMDgNw/U8PkF-ZNSxI/AAAAAAAAAD4/1Ju94IwbkgI/s1600/hector_and_the_search_for_happiness_plane.jpg",
       "https://is1-ssl.mzstatic.com/image/thumb/Music6/v4/a1/66/b8/a166b81c-0f6b-c751-6472-32bac5cf7ff0/886444332415.jpg/1200x630bb.jpg",
       "http://www.mjyoung.net/imgsrc/About04.jpg"
   ]
@@ -334,7 +334,7 @@
       },
       {
         title: "Hector and the Search for Happiness",
-        poster: "http://www.video2k.is/data/yify/medium_cover/51486.jpg"
+        poster: "https://1.bp.blogspot.com/-sZeObPMDgNw/U8PkF-ZNSxI/AAAAAAAAAD4/1Ju94IwbkgI/s1600/hector_and_the_search_for_happiness_plane.jpg"
       },
       {
         title: "The Secret Life of Walter Mitty",
@@ -346,20 +346,21 @@
       }
     ]
 
-
   // class App extends Component {
+
   //   render() {	
   //     return (
   //  	 <div className="App">
-       {movies.map(movie => {
-         return <Movie title={movie.title} poster={movie.poster} />
-       })}
+     {movies.map(movie => {
+       return <Movie title={movie.title} poster={movie.poster} />
+     })}
   //       </div>
   //     );
   //   }
   // }
 
   // export default App;
+
   ```
 
 - ```react
@@ -376,9 +377,11 @@
   different img
   About Time
 
+    
   // Console
   ▶︎Warning: Each child in an array or iterator should have a unique "key" prop.
   ```
+
 
 - ```react
   // before
@@ -602,11 +605,9 @@
 - ```react
   // http://localhost:3000/
   Wassup bro?
-
-
   // 2초 후에 바뀐다
   Wassup again!
-    
+
   img
   Captain Fantastic
 
@@ -619,6 +620,7 @@
   img
   About Time
   ```
+
 
 - **setTimeout**은 xx시간 후에 작업을 수행시킨다는 뜻이다.
 
@@ -638,45 +640,45 @@
   // class App extends Component {
 
   // state = {
-  // 	  greeting: 'Wassup bro?',
-  	   movies: [
-  		   {
-  			   title: "Captain Fantastic",
-  			   poster: "https://is2-ssl.mzstatic.com/image/thumb/Video22/v4/71/09/3b/71093bba-626b-e900-0c05-f0a97b2070f2/source/1200x630bb.jpg"
-  		   },
-  		   {
-   			   title: "Hector and the Search for Happiness",
-  			   poster: "http://www.video2k.is/data/yify/medium_cover/51486.jpg"
-  		   },
-  		   {
-  			   title: "The Secret Life of Walter Mitty",
-  			   poster: "https://is1-ssl.mzstatic.com/image/thumb/Music6/v4/a1/66/b8/a166b81c-0f6b-c751-6472-32bac5cf7ff0/886444332415.jpg/1200x630bb.jpg"
-  		   },
-  		   {
-  			   title: "About Time",
-  			   poster: "http://www.mjyoung.net/imgsrc/About04.jpg"
-  		   }
-  	   ]
-     }
+    	   movies: [
+    		   {
+    			   title: "Captain Fantastic",
+    			   poster: "https://is2-ssl.mzstatic.com/image/thumb/Video22/v4/71/09/3b/71093bba-626b-e900-0c05-f0a97b2070f2/source/1200x630bb.jpg"
+    		   },
+    		   {
+     			   title: "Hector and the Search for Happiness",
+    			   poster: "http://www.video2k.is/data/yify/medium_cover/51486.jpg"
+    		   },
+    		   {
+    			   title: "The Secret Life of Walter Mitty",
+    			   poster: "https://is1-ssl.mzstatic.com/image/thumb/Music6/v4/a1/66/b8/a166b81c-0f6b-c751-6472-32bac5cf7ff0/886444332415.jpg/1200x630bb.jpg"
+    		   },
+    		   {
+    			   title: "About Time",
+    			   poster: "http://www.mjyoung.net/imgsrc/About04.jpg"
+    		   }
+    	   ]
+       }
 
-  componentDidMount() {
-    setTimeout(() => {
-      this.setState({
-        movies: [
-          ...this.state.movies,
-          {
-            title: "Wild",
-            poster: "https://cdns.klimg.com/kapanlagi.com/p/headline/476x238/wild-kisah-petualangan-menjelajah-alam--032e71.jpg"
-          }
-        ]
-      })
-    }, 2000)
-  }
+    componentDidMount() {
+      setTimeout(() => {
+        this.setState({
+          movies: [
+            ...this.state.movies,
+            {
+              title: "Wild",
+              poster: "https://cdns.klimg.com/kapanlagi.com/p/headline/476x238/wild-kisah-petualangan-menjelajah-alam--032e71.jpg"
+            }
+          ]
+        })
+      }, 2000)
+    }
 
   //   render() {	
   //     return (
   //  	 <div className="App">
-   		 {this.state.movies.map((movie, index) => {		// this.state 추가
+     		 {this.state.movies.map((movie, index) => {		// this.state 추가
+
   //   	 	return <Movie title={movie.title} poster={movie.poster} key={index} />
   // 		 })}
   //       </div>
@@ -687,29 +689,30 @@
   // export default App;
   ```
 
-  ```react
-  // http://localhost:3000/  
-  img
-  Captain Fantastic
+- ```react
+    // http://localhost:3000/  
+    img
+    Captain Fantastic
 
-  img
-  Hector and the Search for Happiness
+    img
+    Hector and the Search for Happiness
 
-  img
-  The Secret Life of Walter Mitty
+    img
+    The Secret Life of Walter Mitty
 
-  img
-  About Time
+    img
+    About Time
 
+    // 2초 후에 표시
+    img
+    Wild
+    ```
 
-  // 2초 후에 표시
-  img
-  Wild
-  ```
 
 - **setTimeout**은 xx시간 후에 작업을 수행시킨다는 뜻이다.
 
 - **…this.state.movies**를 삭제하면 기존 4개 리스트가 없어지고 추가한 Wild가 전체 리스트를 대체해버린다. 이처럼 state를 활용, 응용해서 페이스북이나 인스타그램처럼 아래로 내릴수록 더 많은 컨텐츠를 로딩되게 할 수 있다. 이것을 **infinite scroll**이라 한다.
+
 
 <br>
 
@@ -724,6 +727,7 @@
 - 영화 리스트를 불러오는 function 생성
 
 - ```react
+
   // App.js
 
   // import React, { Component } from 'react';
@@ -737,57 +741,76 @@
   }
 
   componentDidMount() {
-    setTimeout(() => {
-      this.setState({
-        movies: [
-  			{
-  				title: "Captain Fantastic",
-  				poster: "https://is2-ssl.mzstatic.com/image/thumb/Video22/v4/71/09/3b/71093bba-626b-e900-0c05-f0a97b2070f2/source/1200x630bb.jpg"
-  			},
-  			{
-  				title: "Hector and the Search for Happiness",
-  				poster: "http://www.video2k.is/data/yify/medium_cover/51486.jpg"
-  			},
-  			{
-  				title: "The Secret Life of Walter Mitty",
-  				poster: "https://is1-ssl.mzstatic.com/image/thumb/Music6/v4/a1/66/b8/a166b81c-0f6b-c751-6472-32bac5cf7ff0/886444332415.jpg/1200x630bb.jpg"
-  			},
-  			{
-  				title: "About Time",
-  				poster: "http://www.mjyoung.net/imgsrc/About04.jpg"
-  			},
-  			{
-  				title: "Wild",
-  				poster: "https://cdns.klimg.com/kapanlagi.com/p/headline/476x238/wild-kisah-petualangan-menjelajah-alam--032e71.jpg"
-  			}
-  		]
-      })
-    }, 2000)
-  }
+  	setTimeout(() => {
+  		this.setState({
+  			movies: [
+  				{
+  					title: "Captain Fantastic",
+    					poster: "https://is2-ssl.mzstatic.com/image/thumb/Video22/v4/71/09/3b/71093bba-626b-e900-0c05-f0a97b2070f2/source/1200x630bb.jpg"
+  	  			},
+    				{
+    					title: "Hector and the Search for Happiness",
+    					poster: "http://www.video2k.is/data/yify/medium_cover/51486.jpg"
+  	  			},
+    				{
+    					title: "The Secret Life of Walter Mitty",
+    					poster: "https://is1-ssl.mzstatic.com/image/thumb/Music6/v4/a1/66/b8/a166b81c-0f6b-c751-6472-32bac5cf7ff0/886444332415.jpg/1200x630bb.jpg"
+  	  			},
+    				{
+    					title: "About Time",
+    					poster: "http://www.mjyoung.net/imgsrc/About04.jpg"
+  	  			},
+    				{
+    					title: "Wild",
+    					poster: "https://cdns.klimg.com/kapanlagi.com/p/headline/476x238/wild-kisah-petualangan-menjelajah-alam--032e71.jpg"
+  	  			}
+    			]
+  	      })
+      	}, 2000)
+    }
 
   _renderMovies = () => {
-  	const movies = this.state.movies.map((movie, index) => {
-  		return <Movie title={movie.title} poster={movie.poster} key={index} />
-  	})
-      return movies
-  }
 
-  	render() {	
-  		return (
-  			<div className="App">
-              	{this.state.movies ? this._renderMovies() : 'Loading'}
-  			</div>
-  		);
-  	}
-  }
+    	const movies = this.state.movies.map((movie, index) => {
 
-  // export default App;
+    		return <Movie title={movie.title} poster={movie.poster} key={index} />
+
+    	})
+    return movies
+      }
+
+    	render() {	
+
+    		return (
+
+    			<div className="App">
+  {this.state.movies ? this._renderMovies() : 'Loading'}
+                  </div>
+
+    		);
+
+    	}
+
+    }
+
+    // export default App;
+
   ```
 
-  ```react
-  // http://localhost:3000/
 
+  
+
+
+
+  
+
+ 
+
+  ```react
+
+  // http://localhost:3000/
   Loading
+
 
   // 2초 후 나타남
 
@@ -808,6 +831,7 @@
 
   // 이것이 Loding States
   ```
+
 
 
 <br>
@@ -1012,17 +1036,17 @@
 - ```react
   // http://localhost:3000/
   Loading
-
-
   // Console
 
-  ▶︎Response {type: "cors", url: "https://yts.am/api/v2/list_movies.json?sort_by=rating", redirected: false, status: 200, ok: true, …}
+    ▶︎Response {type: "cors", url: "https://yts.am/api/v2/list_movies.json?sort_by=rating", redirected: false, status: 200, ok: true, …}
+
   ```
 
 
-<br>
 
-- ```react
+
+  ```react
+
   // App.js
 
   // import React, { Component } from 'react';
@@ -1031,13 +1055,15 @@
 
   // class App extends Component {
 
-  // state = {}
+  // state = {
+
+  // }
 
   componentDidMount() {
-    	fetch('https://yts.am/api/v2/list_movies.json?sort_by=rating')
-    	.then(response => response.json())
-      	.then(json => console.log(json))
-      	.catch(err => console.log(err))
+  	fetch('https://yts.am/api/v2/list_movies.json?sort_by=rating')
+  		.then(response => response.json())
+        	.then(json => console.log(json))
+        	.catch(err => console.log(err))
   }
 
   // _renderMovies = () => {
@@ -1059,32 +1085,53 @@
   // export default App;
   ```
 
+
 - ```react
   // http://localhost:3000/
   Loading
 
+    // Console
 
-  // Console
-  ▼{status: "ok", status_message: "Query was successful", data: {…}, @meta: {…}}
-  	▶︎@meta: {server_time: 1517480942, server_timezone: "EST5EDT", api_version: 2, execution_time: "0 ms"}
-        ▼data:
-    		limit: 20
+    ▼{status: "ok", status_message: "Query was successful", data: {…}, @meta: {…}}
+
+    	▶︎@meta: {server_time: 1517480942, server_timezone: "EST5EDT", api_version: 2, execution_time: "0 ms"}
+    ▼data:
+  limit: 20
+
     		movie_count: 6685
+
     	  ▼movies: Array(20)
+
     		▶︎0: {id: 3709, url: …}
+
     		▶︎1: {id: 3304, url: …}
+
     		▶︎2: {id: 3175, url: …}
+
     		…
-            ▶︎19: {id: 3490, url: …}
-    		 length: 20
+  limit: 20
+
+    		movie_count: 6685
+
+    	  ▼movies: Array(20)
+
+    		▶︎0: {id: 3709, url: …}
+
+    		▶︎1: {id: 3304, url: …}
+
+    		▶︎2: {id: 3175, url: …}
+
     		…
+        ▶︎19: {id: 3490, url: …}
+   length: 20
+
+    		…
+
   ```
 
 
 - 못생긴 데이터를 `response`로 체크하고, `json`으로 변환하고, `console`로 보는 것이다.
-
 - 성공적으로 수행하지 않을 경우, 결과물을 catch, then으로 받아볼 수 있다.
-
 - `fetch`가 좋은 이유는, url을 Ajax로 심플하게 불러올 수 있기 때문이다.
 
 <br>
@@ -1092,15 +1139,12 @@
 ### Async Await in React
 
 - Await, Async는 위에 작성한 라인들을 좀 더 분명하게 작성해주는 도구이다.
-
 - CALLBACK HELL: then, then, then..이 많아져서 길을 잃어버리는 것.
+  -   .then(() => .then())
+      CALLBACK HELL! 
 
   ```react
-  .then(() => .then())
-  CALLBACK HELL!
-  ```
 
-- ```react
   // App.js
 
   // import React, { Component } from 'react';
@@ -1123,7 +1167,7 @@
      return movies
   }
 
-  _getMovies = async () => {
+  _getMovies = async() => {
   	const movies = await this._callApi()
       this.setState({
         movies
@@ -1202,93 +1246,94 @@
      return movies
   }
 
-
   _getMovies = async () => {
   	const movies = await this._callApi()
-      this.setState({
-        movies
-      })
-  }
-
+  	  this.setState({
+      	movies
+  	  })
+  	}
 
   _callApi = () => {
-     return fetch('https://yts.am/api/v2/list_movies.json?sort_by=rating')
-     .then(response => response.json())
-     .then(json => json.data.movies)
-     .catch(err => console.log(err))
+    	return fetch('https://yts.am/api/v2/list_movies.json?sort_by=rating')
+     	.then(response => response.json())
+    	.then(json => json.data.movies)
+    	.catch(err => console.log(err))
   }
-
 
   //	render() {	
-  //		return (
-  //			<div className="App">
-  //            	{this.state.movies ? this._renderMovies() : 'Loading'}
-  //			</div>
-  //		);
-  //	  }
-  //  }
-
-  // export default App;
+    //		return (
+    //			<div className="App">
+    //            	{this.state.movies ? this._renderMovies() : 'Loading'}
+    //			</div>
+    //		);
+    //	  }
+    //  }
+    // export default App;
   ```
 
-- ```react
-  // Movie.js
 
-  // import React from 'react';
-  // import propTypes from 'prop-types';
-  // import './Movie.css';
-
-  function Movie({title, poster, genres, synopsis}) {
-  	return (
-  		<div className="Movie">
-  			<div className="Movie__Columns">
-  				<MoviePoster poster={poster} alt={title} />
-        		</div>
-        		<div className="Movie__Columns">
-  				<h1>{title}</h1>
-  			<div className="Movie__Genres">
-  				{genres.map((genre, index) => <MovieGenre genre={genre} key={index} />)}
-  			</div>
-  			<p className="Movie__Synopsis">
-  				{synopsis}
-  			</p>
-        		</div>
-      	</div>
-  	)
-  }
-        
-
-  function MoviePoster({poster, alt}) {
-  	return (
-  		<img src={poster} alt={alt} title={alt} className="Movie__Poster" />
-  	)
-  }
+ 
+  ```react
 
 
-  function MovieGenre({genre}) {
-  	return (
-  		<span className="Movie__Genre">{genre} </span>
-  	)
-  }
+    // Movie.js
 
-  MoviePoster.propTypes = {
-    	title: propTypes.string.isRequired,
-  	poster: propTypes.string.isRequired,
-  	genres: propTypes.string.isRequired,
-  	synopsis: propTypes.string.isRequired
-  }
+    // import React from 'react';
+    // import propTypes from 'prop-types';
+    // import './Movie.css';
 
-  MoviePoster.propTypes = {
+    function Movie({title, poster, genres, synopsis}) {
+    	return (
+    		<div className="Movie">
+    			<div className="Movie__Columns">
+    				<MoviePoster poster={poster} alt={title} />
+          		</div>
+          		<div className="Movie__Columns">
+    				<h1>{title}</h1>
+    			<div className="Movie__Genres">
+    				{genres.map((genre, index) => <MovieGenre genre={genre} key={index} />)}
+    			</div>
+    			<p className="Movie__Synopsis">
+    				{synopsis}
+    			</p>
+          		</div>
+        	</div>
+    	)
+    }
+          
+
+    function MoviePoster({poster, alt}) {
+    	return (
+    		<img src={poster} alt={alt} title={alt} className="Movie__Poster" />
+    	)
+    }
+
+
+    function MovieGenre({genre}) {
+    	return (
+    		<span className="Movie__Genre">{genre} </span>
+    	)
+    }
+
+    Movie.propTypes = {
+      	title: propTypes.string.isRequired,
     	poster: propTypes.string.isRequired,
-  	alt: propTypes.string.isRequired
-  }
+    	genres: propTypes.string.isRequired,
+    	synopsis: propTypes.string.isRequired
+    }
 
-  MovieGenre.prototypes = {
-  	genre: propTypes.string.isRequired
-  }
+    MoviePoster.propTypes = {
+      	poster: propTypes.string.isRequired,
+    	alt: propTypes.string.isRequired
+    }
 
-  // export default Movie;
+    MovieGenre.prototypes = {
+    	genre: propTypes.string.isRequired
+    }
+
+    // export default Movie;
   ```
+
 
 - ```react
   // http://localhost:3000/
