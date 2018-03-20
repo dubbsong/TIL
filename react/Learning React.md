@@ -136,311 +136,49 @@
 
 <br>
 
-### CHAPTER 02
+### CHAPTER 04
 
-### 최신 자바스크립트
+### 순수 리액트
 
-- 원래 자바스크립트는 웹 페이지에 상호작용을 손쉽게 추가하기 위해 만든 언어였다. 그 후 DHTML과 AJAX를 거치면서 더 활발히 사용되었다.
-- 노드가 등장함에 따라 이제 자바스크립트는 풀스택 애플리케이션을 개발하는 데 쓰이는 언어가 되었다.
-- 자바스크립트의 변화를 주도하는 기관이 바로 ECMA(European Computer Manufacturers Association, 에크마, 유럽 컴퓨터 제작자 협회)다.
-- 자바스크립트 언어의 변화는 커뮤니티에 의해 이루어진다. 자바스크립트를 어떻게 변경할지 커뮤니티 멤버라면 누구든지 ECMA에 제안서를 제출할 수 있다.
-- 자바스크립트 명세는 2015년 6월에 크게 개정되었으며 ECMAScript 6, ES6, ES2015, ES6Harmony 등 다양한 이름으로 불렸다.
-- 2016년에는 그리 큰 변화가 없었다. 하지만 ES2017에는 쓸모 있는 기능이 상당히 많이 들어갈 것으로 보인다.
+- 리액트가 브라우저에서 어떻게 실행되는지 이해하기 위해 순수 리액트만 활용해 작업을 진행할 것이다.
+- 순수 리액트를 살펴보지 않고도 리액트를 완벽히 활용할 수 있다. 하지만 리액트 내부에서 어떤 일이 벌어지는지 이해하기 위해 시간을 투자한다면 더 효율적인 리액트 프로그래머가 될 수 있다.
 
 <br>
 
-#### 2.1 ES6에서 변수 선언하기
+#### 4.1 페이지 설정
 
-- ES6 이전에는 var 키워드가 변수를 선언하는 유일한 방법이었다.
-
-<br>
-
-###### 2.1.1 const
-
-- 상수(constant)는 값을 변경할 수 없는 변수다.
-
-- ```javascript
-  var pizza = true
-  pizza = false
-
-  console.log(pizza)	// false
-  ```
-
-- ```javascript
-  const pizza = true
-  pizza = false
-
-  console.log(pizza)	// Uncaught SyntaxError:
-  ```
+- 리액트를 브라우저에서 다루려면 React와 ReactDOM 라이브러리를 불러와야 한다.
+- React는 뷰를 만들기 위한 라이브러리고, ReactDOM은 UI를 실제로 브라우저에 렌더링할 때 사용하는 라이브러리다.
+- ReactDOM이 UI를 렌더링하기 위해 사용할 HTML 엘리먼트가 필요하다.
 
 <br>
 
-###### 2.1.2 let
+#### 4.2 가상 DOM
 
-- 자바스크립트도 이제는 **구문적인 변수 영역 규칙**(lexical variable scoping)을 지원한다.
-
-- 자바스크립트에서는 중괄호 {}를 사용해 코드 블록을 만든다. 함수의 경우 이런 코드 블록이 별도의 변수 영역을 이룬다. 하지만 if/else 문 같은 경우는 다르다. if/else 블록 안에서 변수를 새로 만들면 그 변수의 영역이 그 블록 안으로만 한정되지 않는다.
-
-- ```javascript
-  var topic = "자바스크립트"
-
-  if (topic) {
-      var topic = "리액트"
-      console.log('블록', topic)	// 블록 리액트
-  }
-
-  console.log('글로벌', topic)	// 글로벌 리액트
-  ```
-
-- let 키워드를 사용하면 변수 영역을 코드 블록 안으로 한정시킬 수 있다. 그러므로 **글로벌 변수의 값을 보호할 수 있다.**
-
-- ```javascript
-  var topic = "자바스크립트"
-
-  if (topic) {
-      let topic = "리액트"
-      console.log('블록', topic)	// 블록 리액트
-  }
-
-  console.log('글로벌', topic)	// 글로벌 자바스크립트
-  ```
+- HTML은 브라우저가 문서 객체 모델(DOM)을 구성하기 위해 따라야 하는 절차라고 간단히 말할 수 있다.
+- HTML 문서를 이루는 엘리먼트는 브라우저가 HTML 문서를 읽어 들이면 DOM 엘리먼트가 되고, 이 DOM이 화면에 사용자 인터페이스를 표시한다.
+- 전통적으로 웹사이트는 독립적인 HTML 페이지들로 만들어졌다. 사용자가 페이지 사이를 내비게이션하면 브라우저는 매번 다른 HTML 문서를 요청해서 로딩한다.
+- AJAX가 생기면서 단일 페이지 앱(Single Page Application, SPA)이 생겼다.
+- 브라우저가 AJAX를 사용해 아주 작은 데이터를 요청해서 가져올 수 있게 됨에 따라 이제는 전체 웹 애플리케이션이 한 페이지로 실행되면서 JS에 의존해 사용자 인터페이스를 갱신할 수 있게 되었다.
+- SPA에서 처음에 브라우저는 HTML 문서를 하나 적재한다. 사용자는 사이트를 내비게이션하지만 실제로는 같은 페이지 안에 계속 머문다. JS는 사용자가 애플리케이션과 상호작용하는 것에 맞춰 표시 중이던 인터페이스를 없애고 새로운 사용자 인터페이스를 만든다. 사용자가 느끼기에는 한 페이지에서 다른 페이지로 이동한 것 같지만 실제로는 여전히 같은 HTML 페이지 안에 머물 뿐이고 JS가 모든 힘든 처리를 대신 해준다.
+- DOM API는 브라우저의 DOM을 변경하기 위해 JS가 사용할 수 있는 객체의 모음이다. document.createElement나 document.appendChild를 써봤다면 이미 DOM을 써본 것이다. 화면에 표시된 DOM 엘리먼트를 JS로 갱신하거나 변경하는 것은 상대적으로 쉽다. 하지만 새 엘리먼트를 추가하려면 시간이 엄청나게 오래 걸린다. 이는 웹 개발자가 UI를 변경하는 방법을 세밀하고 정확하게 신경 써야 애플리케이션 성능을 향상시킬 수 있다는 뜻이다.
+- JS를 사용해 DOM 변경을 효율적으로 처리하는 일은 아주 복잡하고 시간이 오래 걸리는 일이다.
+- 새로운 애플리케이션을 만들 때마다 그 애플리케이션이 DOM API를 효율적으로 사용하게 만들 수 있는 고급 지식이나 시간이 우리에게 없다는 점이다. **이에 대한 해법이 리액트다.**
+- 리액트는 브라우저 DOM을 갱신하기 위해 만든 라이브러리다. 리액트가 모든 처리를 대신 해주기 때문에 더 이상 SPA를 더 효율적으로 만들기 위해 여러 복잡한 내용을 신경 쓸 필요 없다. 우리는 DOM API를 직접 조작하지 않는다. 대신 **가상 DOM**을 다루거나 리액트가 UI를 생성하고 브라우저와 상호작용하기 위해 사용하는 몇 가지 명령을 다룬다.
+- 가상 DOM은 리액트 엘리먼트로 이루어진다. 리액트 엘리먼트는 개념상 HTML 엘리먼트와 비슷하지만 실제로는 JS 객체다. DOM API를 직접 다루는 것보다 JS 객체인 가상 DOM을 직접 다루는 편이 훨씬 빠르다. 가상 DOM을 변경하면 리액트는 DOM API를 사용해 변경사항을 가장 효율적으로 렌더링해준다.
 
 <br>
 
-- 중괄호가 새로운 영역을 만들어내지 못하는 다른 부분으로는 for 루프가 있다.
 
-- ```javascript
-  var div, container = document.getElementById('container')
 
-  for (var i = 0; i < 5; i++) {
-      div = document.createElement('div')
-      div.onclick = function() {
-          alert('이것은 박스 #' + i + '입니다.')
-      }
-      container.appendChild(div)
-  }
-  ```
 
-- 이 루프에서는 컨테이너 안에 5개의 div를 만든다. 각 div에는 그 div의 인덱스를 경고창에 표시해주는 onclick 핸들러가 할당된다. for 루프 안에서 i를 선언해도 글로벌 영역에 i가 생기며 i가 5가 될 때까지 for 루프를 돈다. 그러므로 5개의 div 박스 중 어느 것을 클릭하건 i의 값은 글로벌 변수 i에 있는 5이기 때문에 표시되는 인덱스는 모두 같다.
 
-- 루프 카운터 변수 i를 var 대신 let을 사용해 선언하면 i의 영역이 블록으로 제한된다. 이제 각 박스를 클릭하면 해당 박스를 루프에서 생성할 때 사용한 i 값이 정상적으로 표시된다.
 
-- ```javascript
-  var div, container = document.getElementById('container')
 
-  for (let i = 0; i < 5; i++) {
-      div = document.createElement('div')
-      div.onclick = function() {
-          alert('이것은 박스 #' + i + '입니다.')
-      }
-      container.appendChild(div)
-  }
-  ```
 
-<br>
 
-###### 2.1.3 템플릿 문자열
 
-- 템플릿 문자열(template string)은 문자열 연결 대신 사용할 수 있다. 문자열 중간에 변수를 삽입할 수도 있다.
 
-- 전통적인 문자열 연결은 더하기 기호(+)로 문자열과 변수를 서로 이어붙이는 방식을 사용한다.
-
-- ```javascript
-  console.log(lastName + ", " + firstName + " " + middleName)
-  ```
-
-<br>
-
-- 템플릿에서는 ${ }를 사용해 문자열 안에 변수를 집어넣을 수 있기 때문에 문자열을 단 하나만 사용해도 된다.
-
-- ```javascript
-  console.log(`${lastName}, ${firstName} ${middleName}`)
-  ```
-
-- 템플릿 문자열의 ${ }에는 값을 만들어내는 자바스크립트 식이라면 어떤 것이든 들어갈 수 있다.
-
-- 템플릿 문자열은 공백(빈 칸 뿐 아니라 탭이나 개행 문자 등도 포함)을 유지한다.
-
-- ```javascript
-  `
-  ${firstName} 님께,
-
-  ${event} 티켓 ${qty} 건을 구매해주셔서 감사합니다.
-
-  주문 상세 정보:
-  	${lastName} ${firstName} ${middleName}
-  	${qty} x $${price} = $${qty*price} 공연: ${event}
-
-  공연 시작 30분 전까지 배부처에서 티켓을 수령하시키 바랍니다.
-
-  감사합니다.
-
-  ${ticketAgent} 드림
-  `
-  ```
-
-<br>
-
-###### 2.1.4 디폴트 파라미터
-
-- C++이나 파이썬 같은 언어에서는 함수의 인자로 디폴트 값을 선언할 수 있다. ES6 명세에도 디폴트 파라미터(default parameter)가 추가되었다. 따라서 함수를 호출하면서 값을 지정하지 않으면 디폴트 값이 사용된다.
-
-- ```javascript
-  function logActivity(name="송진영", activity="테니스") {
-      console.log(`${name}은 ${activity}를 좋아합니다.`)
-  }
-  ```
-
-- logActivity 함수를 호출하면서 인자를 지정하지 않아도 디폴트 값을 사용해 함수가 정상적으로 실행된다.
-
-- 문자열 뿐 아니라 어떤 타입의 값도 디폴트 값으로 사용할 수 있다.
-
-- ```javascript
-  var defaultPerson = {
-      name: {
-          first: "진영",
-          last: "송"
-      },
-      favActivity: "테니스"
-  }
-
-  function logActivity(p=defaultPerson) {
-      console.log(`${p.name.first}은 ${p.favActivity}를 좋아합니다.`)
-  }
-  ```
-
-<br>
-
-#### 2.2 화살표 함수 (arrow function)
-
-- 화살표 함수는 ES6에 새로 추가된 유용한 기능이다. 이를 사용하면 function 키워드 없이도 함수를 만들 수 있으며, return을 사용하지 않아도 식을 계산한 값이 자동으로 반환된다.
-
-- ```javascript
-  // 인자로 받은 이름을 그 지역의 영주로 만드는 함수
-
-  var lordify = function(firstname) {
-      return `켄테베리의 ${firstname}`
-  }
-
-  console.log(lordify("송진영")) 	// 켄터베리의 송진영
-  console.log(lordify("송주영")) 	// 켄터베리의 송주영
-  ```
-
-
-<br>
-
-- ```javascript
-  var lordify = first => `켄테베리의 ${firstname}`
-
-  console.log(lordify("송진영")) 	// 켄터베리의 송진영
-  console.log(lordify("송주영")) 	// 켄터베리의 송주영
-  ```
-
-<br>
-
-- 화살표(=>)를 사용하면 모든 함수 정의를 한 줄로 끝낼 수 있다. function 키워드를 없앴고, 화살표가 어떤 값을 반환하는지 지정해주기 때문에 return도 없앴다. 또 다른 장점은 함수가 파라미터를 단 하나만 받는 경우 파라미터 주변의 괄호를 생략해도 된다는 것이다. 파라미터가 2개 이상이라면 괄호가 필요하다.
-
-- ```javascript
-  // 예전 방식
-
-  var lordify = function(firstName, land) {
-      return `${land}의 ${firstName}`
-  }
-
-  console.log(lordify('송진영', '더보')) 	// 더보의 송진영
-  console.log(lordify('송진영', '멜번')) 	// 멜번의 송진영
-  ```
-
-- ```javascript
-  // 새로운 방식
-
-  var lordify = (firstName, land) => `${land}의 ${firstName}`
-
-  console.log(lordify('송진영', '더보')) 	// 더보의 송진영
-  console.log(lordify('송진영', '멜번')) 	// 멜번의 송진영
-  ```
-
-<br>
-
-- 결과를 계산하기 위해 여러 줄을 사용해야 한다면 함수 본문 전체를 중괄호로 둘러싸야 한다.
-
-- ```javascript
-  // 예전 방식
-
-  var lordify = function(firstName, land) {
-      if (!firstName) {
-  	    throw new Error('lordify에 이름을 넘겨야 합니다.')
-      }
-      if (!land) {
-          throw new Error('영주에게는 영지가 있어야 합니다.')
-      }
-      return `${land}의 ${firstName}`
-  }
-
-  console.log(lordify('송진영', '더보'))	// 더보의 송진영
-  console.log(lordify('송주영'))			 // Uncaught Error:
-  ```
-
-- ```javascript
-  var lordify = (firstName, land) => {
-      if (!firstName) {
-  	    throw new Error('lordify에 이름을 넘겨야 합니다.')
-      }
-      if (!land) {
-          throw new Error('영주에게는 영지가 있어야 합니다.')
-      }
-      return `${land}의 ${firstName}`
-  }
-
-  console.log(lordify('송진영', '더보'))	// 더보의 송진영
-  console.log(lordify('송주영'))			 // Uncaught Error:
-  ```
-
-<br>
-
-- 화살표 함수는 this를 새로 바인딩하지 않는다.
-
-- ```javascript
-  var gangwon = {
-      resorts: ['용평', '평창', '강촌', '강릉', '홍천'],
-      print: function(delay=1000) {
-          setTimeout(function() {
-              console.log(this.resorts.join(','))
-          }, delay)
-      }
-  }
-
-  gangwon.print()	// Uncaught TypeError:
-  ```
-
-- 이 오류는 this.resorts의 join 메소드를 호출하려고 시도했기 때문에 발생했다. 이 경우 this가 window 객체이기 때문에 resorts가 undefined다. 이런 방법 대신 화살표 함수를 사용하면 this 영역이 제대로 유지된다.
-
-- ```javascript
-  var gangwon = {
-      resorts: ['용평', '평창', '강촌', '강릉', '홍천'],
-      print: function(delay=1000) {
-          setTimeout(() => {	// function() 대신 ()=> 사용
-              console.log(this.resorts.join(','))
-          }, delay)
-      }
-  }
-
-  gangwon.print()	// 용평, 평창, 강촌, 강릉, 홍천
-  ```
-
-- join을 사용해 리조트 이름을 콤마(,)로 연결할 수 있다. 하지만 항상 영역을 염두에 두어야 한다. 화살표 함수는 새로운 this 영역을 만들어내지 않는다.
-
-<br>
-
-#### 세미콜론(;)의 사용
-
-- 자바스크립트에서는 세미콜론이 선택사항이다. 저자의 기본 철학은 필요하지 않은 곳에 세미콜론을 넣지 않는 것이다. 이 책은 불필요한 구문을 최대한 사용하지 않는 미니멀리즘을 지향한다.
-
-<br>
-
-#### 2.3 ES6 트랜스파일링
-
-- ​
 
 
 
